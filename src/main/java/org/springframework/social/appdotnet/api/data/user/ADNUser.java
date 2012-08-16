@@ -23,6 +23,10 @@ public class ADNUser {
     private Boolean follows_you;
     private Boolean you_follow;
     private Boolean you_muted;
+    // TODO Arikg: those are double fields, which ones are right?
+    private Boolean is_follower;
+    private Boolean is_following;
+    private Boolean is_muted;
 
     public String getId() {
         return id;
@@ -142,5 +146,29 @@ public class ADNUser {
 
     public void setYou_muted(Boolean you_muted) {
         this.you_muted = you_muted;
+    }
+
+    public Boolean getIs_follower() {
+        return is_follower;
+    }
+
+    public void setIs_follower(Boolean is_follower) {
+        this.is_follower = is_follower;
+    }
+
+    public Boolean getIs_following() {
+        return is_following;
+    }
+
+    public void setIs_following(Boolean is_following) {
+        this.is_following = is_following;
+    }
+
+    public Boolean getIs_muted() {
+        return is_muted;
+    }
+
+    public void setIs_muted(Boolean is_muted) {
+        this.is_muted = is_muted;
     }
 }
