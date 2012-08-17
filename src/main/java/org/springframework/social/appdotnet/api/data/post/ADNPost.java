@@ -20,7 +20,7 @@ public class ADNPost {
     private Integer num_replies;
     // TODO Arikg: add annotations
     private ADNEntities entities;
-    private Boolean is_deleted;
+    private Boolean deleted;
 
     public String getId() {
         return id;
@@ -102,11 +102,11 @@ public class ADNPost {
         this.num_replies = num_replies;
     }
 
-    public Boolean getIs_deleted() {
-        return is_deleted;
+    public Boolean getDeleted() {
+        return deleted;
     }
 
-    public void setIs_deleted(Boolean is_deleted) {
-        this.is_deleted = is_deleted;
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 }
