@@ -2,7 +2,10 @@ package org.springframework.social.appdotnet.api.impl;
 
 import org.springframework.social.appdotnet.api.UsersOperations;
 import org.springframework.social.appdotnet.api.data.user.ADNUser;
+import org.springframework.social.appdotnet.api.data.user.ADNUsersList;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 /**
  * @author Arik Galansky
@@ -14,13 +17,18 @@ public class UsersTemplate extends AbstractAppdotnetOperations implements UsersO
     }
 
     @Override
+    protected String buildUri(String uri) {
+        return super.buildUri("users/" + uri);
+    }
+
+    @Override
     protected String getVersion() {
         return VERSION_0;
     }
 
     @Override
     public ADNUser get(String id) {
-        return restTemplate.getForObject(buildUri("users/" + id), ADNUser.class);
+        return restTemplate.getForObject(buildUri(id), ADNUser.class);
     }
 
     @Override
@@ -28,4 +36,40 @@ public class UsersTemplate extends AbstractAppdotnetOperations implements UsersO
         return get("me");
     }
 
+    @Override
+    public ADNUser follow(String id) {
+        return restTemplate.postForObject(buildUri(id + "follow"), null, ADNUser.class);
+    }
+
+    //TODO Arikg: should return a user object, but no "deleteForObject" need to implement it
+    @Override
+    public void unfollow(String id) {
+        restTemplate.delete(buildUri(id + "follow"));
+    }
+
+    @Override
+    public List<ADNUser> getFollowers(String id) {
+        return restTemplate.getForObject(buildUri(id + "followers"), ADNUsersList.class);
+    }
+
+    @Override
+    public List<ADNUser> getFollowing(String id) {
+        return restTemplate.getForObject(buildUri(id + "following"), ADNUsersList.class);
+    }
+
+    @Override
+    public ADNUser mute(String id) {
+        return restTemplate.postForObject(buildUri(id + "mute"), null, ADNUser.class);
+    }
+
+    //TODO Arikg: should return a user object, but no "deleteForObject" need to implement it
+    @Override
+    public void unmute(String id) {
+        restTemplate.delete(buildUri(id + "mute"));
+    }
+
+    @Override
+    public List<ADNUser> getMuted() {
+        return restTemplate.getForObject(buildUri("me/following"), ADNUsersList.class);
+    }
 }

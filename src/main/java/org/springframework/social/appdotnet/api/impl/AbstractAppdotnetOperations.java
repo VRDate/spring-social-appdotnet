@@ -1,5 +1,6 @@
 package org.springframework.social.appdotnet.api.impl;
 
+import org.springframework.social.support.URIBuilder;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -17,8 +18,9 @@ public abstract class AbstractAppdotnetOperations {
     }
 
     protected String buildUri(String uri) {
-        return new StringBuilder().append("https://alpha-api.app.net/stream/")
-                .append(getVersion()).append("/").append(uri).toString();
+        StringBuilder sb = new StringBuilder().append("https://alpha-api.app.net/stream/")
+                .append(getVersion()).append("/").append(uri);
+        return URIBuilder.fromUri(sb.toString()).queryParam("access_token", accessToken).build().toString();
     }
 
     protected abstract String getVersion();
