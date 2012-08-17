@@ -13,21 +13,16 @@ import java.util.List;
 public class PostsTemplate extends AbstractAppdotnetOperations implements PostsOperations {
 
     public PostsTemplate(String accessToken, RestTemplate restTemplate) {
-        super(accessToken, restTemplate);
-    }
-
-    @Override
-    protected String getVersion() {
-        return VERSION_0;
+        super(accessToken, restTemplate, "posts", VERSION_0);
     }
 
     @Override
     public ADNPost get(String id) {
-        return restTemplate.getForObject(buildUri("posts/" + id), ADNPost.class);
+        return restTemplate.getForObject(buildUri(id), ADNPost.class);
     }
 
     @Override
     public List<ADNPost> getStream(String userId) {
-        return restTemplate.getForObject(buildUri("posts/stream"), ADNPostsList.class);
+        return restTemplate.getForObject(buildUri("stream"), ADNPostsList.class);
     }
 }

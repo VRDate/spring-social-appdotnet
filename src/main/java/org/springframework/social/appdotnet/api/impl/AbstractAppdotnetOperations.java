@@ -11,17 +11,16 @@ public abstract class AbstractAppdotnetOperations {
 
     protected final RestTemplate restTemplate;
     protected final String accessToken;
+    private final String baseUrl;
 
-    public AbstractAppdotnetOperations(String accessToken, RestTemplate restTemplate) {
+    public AbstractAppdotnetOperations(String accessToken, RestTemplate restTemplate, String name, String version) {
         this.restTemplate = restTemplate;
         this.accessToken = accessToken;
+        this.baseUrl = new StringBuilder().append("https://alpha-api.app.net/stream/")
+                .append(version).append("/").append(name).append("/").toString();
     }
 
     protected String buildUri(String uri) {
-        StringBuilder sb = new StringBuilder().append("https://alpha-api.app.net/stream/")
-                .append(getVersion()).append("/").append(uri);
-        return URIBuilder.fromUri(sb.toString()).queryParam("access_token", accessToken).build().toString();
+        return URIBuilder.fromUri(baseUrl + uri).queryParam("access_token", accessToken).build().toString();
     }
-
-    protected abstract String getVersion();
 }

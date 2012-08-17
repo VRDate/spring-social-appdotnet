@@ -13,17 +13,7 @@ import java.util.List;
 public class UsersTemplate extends AbstractAppdotnetOperations implements UsersOperations {
 
     public UsersTemplate(String accessToken, RestTemplate restTemplate) {
-        super(accessToken, restTemplate);
-    }
-
-    @Override
-    protected String buildUri(String uri) {
-        return super.buildUri("users/" + uri);
-    }
-
-    @Override
-    protected String getVersion() {
-        return VERSION_0;
+        super(accessToken, restTemplate, "users", VERSION_0);
     }
 
     @Override
