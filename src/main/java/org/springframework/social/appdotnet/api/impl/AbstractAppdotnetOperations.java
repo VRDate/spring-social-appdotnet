@@ -23,4 +23,8 @@ public abstract class AbstractAppdotnetOperations {
     protected String buildUri(String uri) {
         return URIBuilder.fromUri(baseUrl + uri).queryParam("access_token", accessToken).build().toString();
     }
+
+    protected String buildUri() {
+        return buildUri("");
+    }
 }
