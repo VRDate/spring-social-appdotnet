@@ -12,8 +12,8 @@ import org.springframework.social.oauth2.AbstractOAuth2ApiBinding;
  */
 public class AppdotnetTemplate extends AbstractOAuth2ApiBinding implements Appdotnet {
 
-    private PostsOperations postsOperations;
-    private UsersOperations usersOperations;
+    private final PostsOperations postsOperations;
+    private final UsersOperations usersOperations;
 
     public AppdotnetTemplate(String accessToken) {
         super(accessToken);
