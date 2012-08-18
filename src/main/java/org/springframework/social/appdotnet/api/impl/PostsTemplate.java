@@ -13,7 +13,6 @@ import java.util.List;
  * @author Arik Galansky
  */
 //TODO Arikg: add general parameters to all streams
-//TODO Arikg: create post + edit AppdotnetAdapter to use it
 public class PostsTemplate extends AbstractAppdotnetOperations implements PostsOperations {
 
     public PostsTemplate(String accessToken, RestTemplate restTemplate) {
