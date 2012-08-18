@@ -1,5 +1,6 @@
 package org.springframework.social.appdotnet.api;
 
+import org.springframework.social.appdotnet.api.data.post.ADNPost;
 import org.springframework.social.appdotnet.api.data.user.ADNUser;
 
 import java.util.List;
@@ -24,6 +25,10 @@ public interface UsersOperations {
 
     public void unmute(String id);
 
-    public List<ADNUser> getMuted();
+    public List<ADNUser> getMutedUsers();
+
+    public List<ADNPost> getPosts(String userId);
+
+    public List<ADNPost> getMentions(String userId);
 
 }

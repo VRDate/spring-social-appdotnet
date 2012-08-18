@@ -1,4 +1,4 @@
-package org.springframework.social.appdotnet.connect;
+package org.springframework.social.appdotnet.connect.temp;
 
 import org.springframework.social.appdotnet.api.Appdotnet;
 import org.springframework.social.appdotnet.api.data.user.ADNUser;
@@ -37,7 +37,7 @@ public class AppdotnetAdapter implements ApiAdapter<Appdotnet> {
     }
 
     @Override
-    public void updateStatus(Appdotnet appNet, String s) {
-        //TODO Arikg: implement this!
+    public void updateStatus(Appdotnet appNet, String message) {
+        appNet.postsOperations().create(message);
     }
 }

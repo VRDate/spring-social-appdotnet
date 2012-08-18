@@ -1,6 +1,8 @@
 package org.springframework.social.appdotnet.api.impl;
 
 import org.springframework.social.appdotnet.api.UsersOperations;
+import org.springframework.social.appdotnet.api.data.post.ADNPost;
+import org.springframework.social.appdotnet.api.data.post.ADNPostsList;
 import org.springframework.social.appdotnet.api.data.user.ADNUser;
 import org.springframework.social.appdotnet.api.data.user.ADNUsersList;
 import org.springframework.web.client.RestTemplate;
@@ -59,7 +61,17 @@ public class UsersTemplate extends AbstractAppdotnetOperations implements UsersO
     }
 
     @Override
-    public List<ADNUser> getMuted() {
+    public List<ADNUser> getMutedUsers() {
         return restTemplate.getForObject(buildUri("me/following"), ADNUsersList.class);
+    }
+
+    @Override
+    public List<ADNPost> getPosts(String userId) {
+        return restTemplate.getForObject(buildUri(userId + "/posts"), ADNPostsList.class);
+    }
+
+    @Override
+    public List<ADNPost> getMentions(String userId) {
+        return restTemplate.getForObject(buildUri(userId + "/mentions"), ADNPostsList.class);
     }
 }
