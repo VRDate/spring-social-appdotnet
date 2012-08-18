@@ -1,4 +1,4 @@
-package org.springframework.social.appdotnet.connect.temp;
+package org.springframework.social.appdotnet.connect;
 
 import org.springframework.social.appdotnet.api.Appdotnet;
 import org.springframework.social.appdotnet.api.data.user.ADNUser;
