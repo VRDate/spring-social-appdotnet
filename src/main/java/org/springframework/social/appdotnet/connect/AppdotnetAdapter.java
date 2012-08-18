@@ -1,6 +1,6 @@
 package org.springframework.social.appdotnet.connect;
 
-import org.springframework.social.appdotnet.api.Appdotnet;
+import org.springframework.social.appdotnet.api.impl.temp.Appdotnet;
 import org.springframework.social.appdotnet.api.data.user.ADNUser;
 import org.springframework.social.connect.ApiAdapter;
 import org.springframework.social.connect.ConnectionValues;

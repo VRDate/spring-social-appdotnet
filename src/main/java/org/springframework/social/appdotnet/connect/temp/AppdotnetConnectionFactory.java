@@ -1,6 +1,6 @@
-package org.springframework.social.appdotnet.connect;
+package org.springframework.social.appdotnet.connect.temp;
 
-import org.springframework.social.appdotnet.api.Appdotnet;
+import org.springframework.social.appdotnet.api.impl.temp.Appdotnet;
 import org.springframework.social.connect.support.OAuth2ConnectionFactory;
 
 /**
