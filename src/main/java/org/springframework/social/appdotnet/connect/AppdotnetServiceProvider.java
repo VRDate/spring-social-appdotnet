@@ -1,7 +1,7 @@
-package org.springframework.social.appdotnet.connect.temp;
+package org.springframework.social.appdotnet.connect;
 
-import org.springframework.social.appdotnet.api.impl.temp.Appdotnet;
-import org.springframework.social.appdotnet.api.impl.temp.AppdotnetTemplate;
+import org.springframework.social.appdotnet.api.Appdotnet;
+import org.springframework.social.appdotnet.api.impl.AppdotnetTemplate;
 import org.springframework.social.oauth2.AbstractOAuth2ServiceProvider;
 import org.springframework.social.oauth2.OAuth2Template;
 
