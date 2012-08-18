@@ -1,4 +1,4 @@
-package org.springframework.social.appdotnet.api.impl.temp;
+package org.springframework.social.appdotnet.api;
 
 import org.springframework.social.appdotnet.api.PostsOperations;
 import org.springframework.social.appdotnet.api.UsersOperations;
