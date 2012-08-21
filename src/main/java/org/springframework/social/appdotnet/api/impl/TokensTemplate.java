@@ -15,7 +15,7 @@ class TokensTemplate extends AbstractAppdotnetOperations implements TokensOperat
     }
 
     @Override
-    public ADNToken get() {
+    public ADNToken getToken() {
         return restTemplate.getForObject(buildUri(), ADNToken.class);
     }
 }
