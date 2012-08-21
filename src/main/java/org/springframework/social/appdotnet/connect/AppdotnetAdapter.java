@@ -27,7 +27,7 @@ public class AppdotnetAdapter implements ApiAdapter<Appdotnet> {
         values.setProviderUserId(user.getId());
         values.setDisplayName("@" + user.getUsername());
         values.setProfileUrl("alpha.app.net/" + user.getUsername());
-        values.setImageUrl(user.getAvatar_image().getUrl());
+        values.setImageUrl(user.getAvatarImage().getUrl());
     }
 
     @Override

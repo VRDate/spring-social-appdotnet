@@ -1,13 +1,15 @@
 package org.springframework.social.appdotnet.api.impl;
 
-import org.springframework.social.appdotnet.api.TokenOperations;
+import org.springframework.social.appdotnet.api.TokensOperations;
 import org.springframework.social.appdotnet.api.data.ADNToken;
 import org.springframework.web.client.RestTemplate;
 
 /**
+ * Implementation of {@link TokensOperations}, accessing App.net token resources
+ *
  * @author Arik Galansky
  */
-public class TokensTemplate extends AbstractAppdotnetOperations implements TokenOperations {
+class TokensTemplate extends AbstractAppdotnetOperations implements TokensOperations {
     public TokensTemplate(String accessToken, RestTemplate restTemplate) {
         super(accessToken, restTemplate, "token", VERSION_0);
     }

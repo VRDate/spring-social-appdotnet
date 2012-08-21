@@ -4,9 +4,11 @@ import org.springframework.social.support.URIBuilder;
 import org.springframework.web.client.RestTemplate;
 
 /**
+ * Superclass to all App.net sub-api implementation templates
+ *
  * @author Arik Galansky
  */
-public abstract class AbstractAppdotnetOperations {
+abstract class AbstractAppdotnetOperations {
     protected static final String VERSION_0 = "0";
 
     protected final RestTemplate restTemplate;

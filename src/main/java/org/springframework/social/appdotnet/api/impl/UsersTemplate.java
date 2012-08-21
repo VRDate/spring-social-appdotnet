@@ -10,9 +10,11 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 /**
+ * Implementation of {@link UsersOperations}, accessing App.net user related resources
+ *
  * @author Arik Galansky
  */
-public class UsersTemplate extends AbstractAppdotnetOperations implements UsersOperations {
+class UsersTemplate extends AbstractAppdotnetOperations implements UsersOperations {
 
     public UsersTemplate(String accessToken, RestTemplate restTemplate) {
         super(accessToken, restTemplate, "users", VERSION_0);

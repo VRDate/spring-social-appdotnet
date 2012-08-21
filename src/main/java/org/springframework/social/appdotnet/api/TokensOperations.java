@@ -5,6 +5,7 @@ import org.springframework.social.appdotnet.api.data.ADNToken;
 /**
  * @author Arik Galansky
  */
-public interface TokenOperations {
+// TODO javadoc
+public interface TokensOperations {
     public ADNToken get();
 }

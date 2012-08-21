@@ -10,10 +10,12 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 /**
+ * Implementation of {@link PostsOperations}, accessing App.net posts resources
+ *
  * @author Arik Galansky
  */
 //TODO Arikg: add general parameters to all streams
-public class PostsTemplate extends AbstractAppdotnetOperations implements PostsOperations {
+class PostsTemplate extends AbstractAppdotnetOperations implements PostsOperations {
 
     public PostsTemplate(String accessToken, RestTemplate restTemplate) {
         super(accessToken, restTemplate, "posts", VERSION_0);

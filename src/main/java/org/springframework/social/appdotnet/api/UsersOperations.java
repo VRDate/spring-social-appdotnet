@@ -8,6 +8,7 @@ import java.util.List;
 /**
  * @author Arik Galansky
  */
+// TODO javadoc
 public interface UsersOperations {
     public ADNUser get(String id);
 

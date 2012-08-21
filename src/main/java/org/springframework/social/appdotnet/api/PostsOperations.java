@@ -7,6 +7,7 @@ import java.util.List;
 /**
  * @author Arik Galansky
  */
+// TODO javadoc
 public interface PostsOperations {
 
     public ADNPost get(String id);

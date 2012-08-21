@@ -12,163 +12,94 @@ public class ADNUser {
     private ADNUserDescription description;
     private String timezone;
     private String locale;
-    private ADNImage avatar_image;
-    private ADNImage cover_image;
+    private ADNImage avatarImage;
+    private ADNImage coverImage;
     private String type;
-    private String created_at;
-    // TODO Arikg: map or object?
+    private String createdAt;
     private Map<String, Integer> counts;
     // TODO Arikg: String? JSONObject? Object?
-    private Object app_data;
-    private Boolean follows_you;
-    private Boolean you_follow;
-    private Boolean you_muted;
-    // TODO Arikg: those are double fields, which ones are right?
-    private Boolean is_follower;
-    private Boolean is_following;
-    private Boolean is_muted;
+    private Object appData;
+    private Boolean followsYou;
+    private Boolean youFollow;
+    private Boolean youMuted;
+
+    public ADNUser(String id, String username, String name, ADNUserDescription description, String timezone,
+                   String locale, ADNImage avatarImage, ADNImage coverImage, String type, String createdAt,
+                   Map<String, Integer> counts, Object appData, Boolean followsYou, Boolean youFollow, Boolean youMuted) {
+        this.id = id;
+        this.username = username;
+        this.name = name;
+        this.description = description;
+        this.timezone = timezone;
+        this.locale = locale;
+        this.avatarImage = avatarImage;
+        this.coverImage = coverImage;
+        this.type = type;
+        this.createdAt = createdAt;
+        this.counts = counts;
+        this.appData = appData;
+        this.followsYou = followsYou;
+        this.youFollow = youFollow;
+        this.youMuted = youMuted;
+    }
 
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public ADNUserDescription getDescription() {
         return description;
     }
 
-    public void setDescription(ADNUserDescription description) {
-        this.description = description;
-    }
-
     public String getTimezone() {
         return timezone;
-    }
-
-    public void setTimezone(String timezone) {
-        this.timezone = timezone;
     }
 
     public String getLocale() {
         return locale;
     }
 
-    public void setLocale(String locale) {
-        this.locale = locale;
+    public ADNImage getAvatarImage() {
+        return avatarImage;
     }
 
-    public ADNImage getAvatar_image() {
-        return avatar_image;
-    }
-
-    public void setAvatar_image(ADNImage avatar_image) {
-        this.avatar_image = avatar_image;
-    }
-
-    public ADNImage getCover_image() {
-        return cover_image;
-    }
-
-    public void setCover_image(ADNImage cover_image) {
-        this.cover_image = cover_image;
+    public ADNImage getCoverImage() {
+        return coverImage;
     }
 
     public String getType() {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getCreated_at() {
-        return created_at;
-    }
-
-    public void setCreated_at(String created_at) {
-        this.created_at = created_at;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
     public Map<String, Integer> getCounts() {
         return counts;
     }
 
-    public void setCounts(Map<String, Integer> counts) {
-        this.counts = counts;
+    public Object getAppData() {
+        return appData;
     }
 
-    public Object getApp_data() {
-        return app_data;
+    public Boolean getFollowsYou() {
+        return followsYou;
     }
 
-    public void setApp_data(Object app_data) {
-        this.app_data = app_data;
+    public Boolean getYouFollow() {
+        return youFollow;
     }
 
-    public Boolean getFollows_you() {
-        return follows_you;
-    }
-
-    public void setFollows_you(Boolean follows_you) {
-        this.follows_you = follows_you;
-    }
-
-    public Boolean getYou_follow() {
-        return you_follow;
-    }
-
-    public void setYou_follow(Boolean you_follow) {
-        this.you_follow = you_follow;
-    }
-
-    public Boolean getYou_muted() {
-        return you_muted;
-    }
-
-    public void setYou_muted(Boolean you_muted) {
-        this.you_muted = you_muted;
-    }
-
-    public Boolean getIs_follower() {
-        return is_follower;
-    }
-
-    public void setIs_follower(Boolean is_follower) {
-        this.is_follower = is_follower;
-    }
-
-    public Boolean getIs_following() {
-        return is_following;
-    }
-
-    public void setIs_following(Boolean is_following) {
-        this.is_following = is_following;
-    }
-
-    public Boolean getIs_muted() {
-        return is_muted;
-    }
-
-    public void setIs_muted(Boolean is_muted) {
-        this.is_muted = is_muted;
+    public Boolean getYouMuted() {
+        return youMuted;
     }
 }
