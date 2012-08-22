@@ -6,22 +6,22 @@ import java.util.Map;
  * @author Arik Galansky
  */
 public class ADNUser {
-    private String id;
-    private String username;
-    private String name;
-    private ADNUserDescription description;
-    private String timezone;
-    private String locale;
-    private ADNImage avatarImage;
-    private ADNImage coverImage;
-    private String type;
-    private String createdAt;
-    private Map<String, Integer> counts;
+    private final String id;
+    private final String username;
+    private final String name;
+    private final ADNUserDescription description;
+    private final String timezone;
+    private final String locale;
+    private final ADNImage avatarImage;
+    private final ADNImage coverImage;
+    private final String type;
+    private final String createdAt;
+    private final Map<String, Integer> counts;
     // TODO Arikg: String? JSONObject? Object?
-    private Object appData;
-    private Boolean followsYou;
-    private Boolean youFollow;
-    private Boolean youMuted;
+    private final Object appData;
+    private final Boolean followsYou;
+    private final Boolean youFollow;
+    private final Boolean youMuted;
 
     public ADNUser(String id, String username, String name, ADNUserDescription description, String timezone,
                    String locale, ADNImage avatarImage, ADNImage coverImage, String type, String createdAt,

@@ -6,9 +6,9 @@ import org.springframework.social.appdotnet.api.data.entities.ADNEntities;
  * @author Arik Galansky
  */
 public class ADNUserDescription {
-    private String text;
-    private String html;
-    private ADNEntities entities;
+    private final String text;
+    private final String html;
+    private final ADNEntities entities;
 
     public ADNUserDescription(String text, String html, ADNEntities entities) {
         this.text = text;

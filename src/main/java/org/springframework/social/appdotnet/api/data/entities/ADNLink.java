@@ -4,8 +4,8 @@ package org.springframework.social.appdotnet.api.data.entities;
  * @author Arik Galansky
  */
 public class ADNLink extends ADNEntity {
-    private String text;
-    private String url;
+    private final String text;
+    private final String url;
 
     public ADNLink(String text, String url, Integer pos, Integer len) {
         super(pos, len);

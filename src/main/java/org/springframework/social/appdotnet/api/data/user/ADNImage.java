@@ -4,9 +4,9 @@ package org.springframework.social.appdotnet.api.data.user;
  * @author Arik Galansky
  */
 public class ADNImage {
-    private Integer height;
-    private Integer width;
-    private String url;
+    private final Integer height;
+    private final Integer width;
+    private final String url;
 
     public ADNImage(Integer height, Integer width, String url) {
         this.height = height;

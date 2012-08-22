@@ -9,18 +9,18 @@ import java.util.Date;
  * @author Arik Galansky
  */
 public class ADNPost {
-    private String id;
-    private ADNUser user;
-    private Date createdAt;
-    private String text;
-    private String html;
-    private ADNPostSource source;
-    private String replyTo;
-    private String threadId;
-    private Integer numReplies;
+    private final String id;
+    private final ADNUser user;
+    private final Date createdAt;
+    private final String text;
+    private final String html;
+    private final ADNPostSource source;
+    private final String replyTo;
+    private final String threadId;
+    private final Integer numReplies;
     // TODO Arikg: add annotations
-    private ADNEntities entities;
-    private Boolean deleted;
+    private final ADNEntities entities;
+    private final Boolean deleted;
 
     public ADNPost(String id, ADNUser user, Date createdAt, String text, String html, ADNPostSource source,
                    String replyTo, String threadId, Integer numReplies, ADNEntities entities, Boolean deleted) {

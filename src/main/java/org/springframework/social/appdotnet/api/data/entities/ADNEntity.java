@@ -4,8 +4,8 @@ package org.springframework.social.appdotnet.api.data.entities;
  * @author Arik Galansky
  */
 public abstract class ADNEntity {
-    private Integer pos;
-    private Integer len;
+    private final Integer pos;
+    private final Integer len;
 
     protected ADNEntity(Integer pos, Integer len) {
         this.pos = pos;

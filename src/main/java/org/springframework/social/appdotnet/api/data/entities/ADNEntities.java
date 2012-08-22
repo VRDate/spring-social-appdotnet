@@ -6,9 +6,9 @@ import java.util.List;
  * @author Arik Galansky
  */
 public class ADNEntities {
-    private List<ADNMention> mentions;
-    private List<ADNHashtag> hashtags;
-    private List<ADNLink> links;
+    private final List<ADNMention> mentions;
+    private final List<ADNHashtag> hashtags;
+    private final List<ADNLink> links;
 
     public ADNEntities(List<ADNMention> mentions, List<ADNHashtag> hashtags, List<ADNLink> links) {
         this.mentions = mentions;
