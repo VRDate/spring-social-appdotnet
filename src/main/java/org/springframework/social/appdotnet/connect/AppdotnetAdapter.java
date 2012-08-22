@@ -8,12 +8,15 @@ import org.springframework.social.connect.UserProfile;
 import org.springframework.social.connect.UserProfileBuilder;
 
 /**
+ * App.net ApiAdapter implementation
+ *
  * @author Arik Galansky
  */
 public class AppdotnetAdapter implements ApiAdapter<Appdotnet> {
     @Override
     public boolean test(Appdotnet appNet) {
         try {
+            // TODO Arikg: is getUserProfile the best test? possibly something smaller?
             appNet.usersOperations().getUserProfile();
             return true;
         } catch (Exception e) {

@@ -6,6 +6,7 @@ import org.springframework.social.oauth2.AbstractOAuth2ServiceProvider;
 import org.springframework.social.oauth2.OAuth2Template;
 
 /**
+ * App.net ServiceProvider implementation
  * @author Arik Galansky
  */
 public class AppdotnetServiceProvider extends AbstractOAuth2ServiceProvider<Appdotnet> {
