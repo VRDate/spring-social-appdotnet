@@ -91,15 +91,15 @@ public class ADNUser {
         return appData;
     }
 
-    public Boolean getFollowsYou() {
+    public Boolean followsYou() {
         return followsYou;
     }
 
-    public Boolean getYouFollow() {
+    public Boolean youFollow() {
         return youFollow;
     }
 
-    public Boolean getYouMuted() {
+    public Boolean youMuted() {
         return youMuted;
     }
 }

@@ -1,4 +1,4 @@
-package org.springframework.social.appdotnet.api.impl;
+package org.springframework.social.appdotnet.api.impl.json;
 
 import org.codehaus.jackson.annotate.JsonCreator;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -28,7 +28,7 @@ abstract class ADNPostMixin {
             @JsonProperty("thread_id") String threadId,
             @JsonProperty("num_replies") Integer numReplies,
             @JsonProperty("entities") ADNEntities entities,
-            @JsonProperty("deleted") Boolean deleted
+            @JsonProperty("is_deleted") Boolean deleted
     ) {
     }
 }

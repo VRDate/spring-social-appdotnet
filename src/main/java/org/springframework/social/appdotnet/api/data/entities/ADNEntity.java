@@ -7,19 +7,16 @@ public abstract class ADNEntity {
     private Integer pos;
     private Integer len;
 
+    protected ADNEntity(Integer pos, Integer len) {
+        this.pos = pos;
+        this.len = len;
+    }
+
     public Integer getPos() {
         return pos;
     }
 
-    public void setPos(Integer pos) {
-        this.pos = pos;
-    }
-
     public Integer getLen() {
         return len;
-    }
-
-    public void setLen(Integer len) {
-        this.len = len;
     }
 }

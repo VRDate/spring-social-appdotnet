@@ -10,27 +10,21 @@ public class ADNEntities {
     private List<ADNHashtag> hashtags;
     private List<ADNLink> links;
 
-    public List<ADNMention> getMentions() {
-        return mentions;
+    public ADNEntities(List<ADNMention> mentions, List<ADNHashtag> hashtags, List<ADNLink> links) {
+        this.mentions = mentions;
+        this.hashtags = hashtags;
+        this.links = links;
     }
 
-    public void setMentions(List<ADNMention> mentions) {
-        this.mentions = mentions;
+    public List<ADNMention> getMentions() {
+        return mentions;
     }
 
     public List<ADNHashtag> getHashtags() {
         return hashtags;
     }
 
-    public void setHashtags(List<ADNHashtag> hashtags) {
-        this.hashtags = hashtags;
-    }
-
     public List<ADNLink> getLinks() {
         return links;
-    }
-
-    public void setLinks(List<ADNLink> links) {
-        this.links = links;
     }
 }

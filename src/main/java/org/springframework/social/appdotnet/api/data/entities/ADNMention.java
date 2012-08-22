@@ -7,19 +7,17 @@ public class ADNMention extends ADNEntity {
     private String id;
     private String name;
 
+    public ADNMention(String name, String id, Integer pos, Integer len) {
+        super(pos, len);
+        this.id = id;
+        this.name = name;
+    }
+
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

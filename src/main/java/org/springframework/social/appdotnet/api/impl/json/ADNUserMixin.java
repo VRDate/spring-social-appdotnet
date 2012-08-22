@@ -1,4 +1,4 @@
-package org.springframework.social.appdotnet.api.impl;
+package org.springframework.social.appdotnet.api.impl.json;
 
 import org.codehaus.jackson.annotate.JsonCreator;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -14,7 +14,7 @@ import java.util.Map;
  * @author Arik Galansky
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ADNUserMixin {
+abstract class ADNUserMixin {
     @JsonCreator
     ADNUserMixin(
             @JsonProperty("id") String id,

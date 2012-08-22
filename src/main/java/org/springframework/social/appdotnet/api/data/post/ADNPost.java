@@ -77,7 +77,7 @@ public class ADNPost {
         return entities;
     }
 
-    public Boolean getDeleted() {
+    public Boolean isDeleted() {
         return deleted;
     }
 }

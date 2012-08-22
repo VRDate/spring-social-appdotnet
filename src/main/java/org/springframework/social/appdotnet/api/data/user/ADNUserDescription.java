@@ -10,27 +10,21 @@ public class ADNUserDescription {
     private String html;
     private ADNEntities entities;
 
-    public String getText() {
-        return text;
+    public ADNUserDescription(String text, String html, ADNEntities entities) {
+        this.text = text;
+        this.html = html;
+        this.entities = entities;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public String getText() {
+        return text;
     }
 
     public String getHtml() {
         return html;
     }
 
-    public void setHtml(String html) {
-        this.html = html;
-    }
-
     public ADNEntities getEntities() {
         return entities;
-    }
-
-    public void setEntities(ADNEntities entities) {
-        this.entities = entities;
     }
 }

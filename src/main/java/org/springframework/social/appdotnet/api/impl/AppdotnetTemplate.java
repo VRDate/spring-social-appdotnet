@@ -6,6 +6,7 @@ import org.springframework.social.appdotnet.api.Appdotnet;
 import org.springframework.social.appdotnet.api.PostsOperations;
 import org.springframework.social.appdotnet.api.TokensOperations;
 import org.springframework.social.appdotnet.api.UsersOperations;
+import org.springframework.social.appdotnet.api.impl.json.AppdotnetJacksonModule;
 import org.springframework.social.oauth2.AbstractOAuth2ApiBinding;
 import org.springframework.web.client.RestTemplate;
 
