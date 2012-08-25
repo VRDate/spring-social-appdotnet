@@ -3,6 +3,8 @@ package org.springframework.social.appdotnet.api.data.user;
 import org.springframework.social.appdotnet.api.data.entities.ADNEntities;
 
 /**
+ * Represents the description portoin of an app.net user profile
+ *
  * @author Arik Galansky
  */
 public class ADNUserDescription {

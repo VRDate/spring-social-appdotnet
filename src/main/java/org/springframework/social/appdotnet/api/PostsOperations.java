@@ -3,6 +3,7 @@ package org.springframework.social.appdotnet.api;
 import org.springframework.social.appdotnet.api.data.post.ADNPost;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Arik Galansky
@@ -18,9 +19,17 @@ public interface PostsOperations {
 
     public List<ADNPost> getPersonalStream();
 
+    public List<ADNPost> getPersonalStream(Map<String, String> extraParams);
+
     public List<ADNPost> getGlobalStream();
+
+    public List<ADNPost> getGlobalStream(Map<String, String> extraParams);
 
     public List<ADNPost> getHashtagStream(String hashtag);
 
+    public List<ADNPost> getHashtagStream(String hashtag, Map<String, String> extraParams);
+
     public List<ADNPost> getPostReplies(String id);
+
+    public List<ADNPost> getPostReplies(String id, Map<String, String> extraParams);
 }

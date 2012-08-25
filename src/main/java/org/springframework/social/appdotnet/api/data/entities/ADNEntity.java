@@ -1,6 +1,8 @@
 package org.springframework.social.appdotnet.api.data.entities;
 
 /**
+ * A parent to all meta entities inside posts (e.g. links, mentions, hashtags)
+ *
  * @author Arik Galansky
  */
 public abstract class ADNEntity {

@@ -3,6 +3,8 @@ package org.springframework.social.appdotnet.api.data.entities;
 import java.util.List;
 
 /**
+ * An object containing all the meta entities inside a post
+ *
  * @author Arik Galansky
  */
 public class ADNEntities {

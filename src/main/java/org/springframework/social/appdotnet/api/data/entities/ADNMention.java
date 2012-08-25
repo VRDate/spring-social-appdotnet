@@ -1,6 +1,8 @@
 package org.springframework.social.appdotnet.api.data.entities;
 
 /**
+ * Represents a user mention inside a post
+ *
  * @author Arik Galansky
  */
 public class ADNMention extends ADNEntity {

@@ -1,6 +1,8 @@
 package org.springframework.social.appdotnet.api.data.user;
 
 /**
+ * Represents an image in App.net
+ *
  * @author Arik Galansky
  */
 public class ADNImage {

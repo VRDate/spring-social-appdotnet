@@ -3,6 +3,7 @@ package org.springframework.social.appdotnet.api.data.user;
 import java.util.Map;
 
 /**
+ * Represents an app.net user
  * @author Arik Galansky
  */
 public class ADNUser {

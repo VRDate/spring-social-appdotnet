@@ -4,6 +4,7 @@ import org.springframework.social.appdotnet.api.data.post.ADNPost;
 import org.springframework.social.appdotnet.api.data.user.ADNUser;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Interface defining the operations for retrieving information about App.net users.
@@ -89,11 +90,29 @@ public interface UsersOperations {
     public List<ADNPost> getPosts(String userId);
 
     /**
+     * Retrieve all posts created by the specified user
+     *
+     * @param userId App.net user ID of the user whose posts you wish to retrieve
+     * @param extraParams extra parameters to modify the query, best used with {@link GeneralParametersBuilder}
+     * @return a List of {@link ADNPost} objects all created by the user specified (without the user in the)
+     */
+    public List<ADNPost> getPosts(String userId, Map<String, String> extraParams);
+
+    /**
      * Retrieve all posts that the specified user was mentioned in
      *
      * @param userId App.net user ID of the user whose mentions you wish to retrieve
      * @return a List of {@link ADNPost} objects in which the user is mentioned
      */
     public List<ADNPost> getMentions(String userId);
+
+    /**
+     * Retrieve all posts that the specified user was mentioned in
+     *
+     * @param userId      userId App.net user ID of the user whose mentions you wish to retrieve
+     * @param extraParams extra parameters to modify the query, best used with {@link GeneralParametersBuilder}
+     * @return a List of {@link ADNPost} objects in which the user is mentioned
+     */
+    public List<ADNPost> getMentions(String userId, Map<String, String> extraParams);
 
 }

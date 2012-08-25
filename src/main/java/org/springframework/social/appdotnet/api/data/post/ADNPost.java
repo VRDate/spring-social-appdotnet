@@ -6,6 +6,8 @@ import org.springframework.social.appdotnet.api.data.user.ADNUser;
 import java.util.Date;
 
 /**
+ * Represents a post inside App.net
+ *
  * @author Arik Galansky
  */
 public class ADNPost {

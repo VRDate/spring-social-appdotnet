@@ -5,6 +5,8 @@ import org.springframework.social.appdotnet.api.data.user.ADNUser;
 import java.util.List;
 
 /**
+ * Represents the currently logged in user token
+ *
  * @author Arik Galansky
  */
 public class ADNToken {

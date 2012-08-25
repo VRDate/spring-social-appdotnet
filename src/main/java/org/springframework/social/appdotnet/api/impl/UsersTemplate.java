@@ -8,6 +8,7 @@ import org.springframework.social.appdotnet.api.data.user.ADNUsersList;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Implementation of {@link UsersOperations}, accessing App.net user related resources
@@ -68,12 +69,22 @@ class UsersTemplate extends AbstractAppdotnetOperations implements UsersOperatio
     }
 
     @Override
+    public List<ADNPost> getPosts(String userId, Map<String, String> extraParams) {
+        return restTemplate.getForObject(buildUri(userId + "/posts", extraParams), ADNPostsList.class);
+    }
+
+    @Override
     public List<ADNPost> getPosts(String userId) {
-        return restTemplate.getForObject(buildUri(userId + "/posts"), ADNPostsList.class);
+        return getPosts(userId, null);
+    }
+
+    @Override
+    public List<ADNPost> getMentions(String userId, Map<String, String> extraParams) {
+        return restTemplate.getForObject(buildUri(userId + "/mentions", extraParams), ADNPostsList.class);
     }
 
     @Override
     public List<ADNPost> getMentions(String userId) {
-        return restTemplate.getForObject(buildUri(userId + "/mentions"), ADNPostsList.class);
+        return getMentions(userId, null);
     }
 }

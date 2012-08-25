@@ -8,6 +8,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Implementation of {@link PostsOperations}, accessing App.net posts resources
@@ -39,22 +40,42 @@ class PostsTemplate extends AbstractAppdotnetOperations implements PostsOperatio
     }
 
     @Override
+    public List<ADNPost> getPersonalStream(Map<String, String> extraParams) {
+        return restTemplate.getForObject(buildUri("stream", extraParams), ADNPostsList.class);
+    }
+
+    @Override
     public List<ADNPost> getPersonalStream() {
-        return restTemplate.getForObject(buildUri("stream"), ADNPostsList.class);
+        return getPersonalStream(null);
+    }
+
+    @Override
+    public List<ADNPost> getGlobalStream(Map<String, String> extraParams) {
+        return restTemplate.getForObject(buildUri("stream/global", extraParams), ADNPostsList.class);
     }
 
     @Override
     public List<ADNPost> getGlobalStream() {
-        return restTemplate.getForObject(buildUri("stream/global"), ADNPostsList.class);
+        return getGlobalStream(null);
+    }
+
+    @Override
+    public List<ADNPost> getHashtagStream(String hashtag, Map<String, String> extraParams) {
+        return restTemplate.getForObject(buildUri("tag/" + hashtag, extraParams), ADNPostsList.class);
     }
 
     @Override
     public List<ADNPost> getHashtagStream(String hashtag) {
-        return restTemplate.getForObject(buildUri("tag/" + hashtag), ADNPostsList.class);
+        return getHashtagStream(hashtag, null);
+    }
+
+    @Override
+    public List<ADNPost> getPostReplies(String id, Map<String, String> extraParams) {
+        return restTemplate.getForObject(buildUri(id + "/replies", extraParams), ADNPostsList.class);
     }
 
     @Override
     public List<ADNPost> getPostReplies(String id) {
-        return restTemplate.getForObject(buildUri(id + "/replies"), ADNPostsList.class);
+        return getPostReplies(id, null);
     }
 }

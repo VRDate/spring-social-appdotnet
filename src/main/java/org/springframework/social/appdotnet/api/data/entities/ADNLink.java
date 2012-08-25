@@ -1,6 +1,8 @@
 package org.springframework.social.appdotnet.api.data.entities;
 
 /**
+ * Represents a link inside a post
+ *
  * @author Arik Galansky
  */
 public class ADNLink extends ADNEntity {
