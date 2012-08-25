@@ -36,7 +36,6 @@ class UsersTemplate extends AbstractAppdotnetOperations implements UsersOperatio
         return restTemplate.postForObject(buildUri(id + "follow"), null, ADNUser.class);
     }
 
-    //TODO Arikg: should return a user object, but no "deleteForObject" need to implement it
     @Override
     public void unfollow(String id) {
         restTemplate.delete(buildUri(id + "follow"));
@@ -57,7 +56,6 @@ class UsersTemplate extends AbstractAppdotnetOperations implements UsersOperatio
         return restTemplate.postForObject(buildUri(id + "mute"), null, ADNUser.class);
     }
 
-    //TODO Arikg: should return a user object, but no "deleteForObject" need to implement it
     @Override
     public void unmute(String id) {
         restTemplate.delete(buildUri(id + "mute"));
