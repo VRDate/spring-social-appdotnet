@@ -16,7 +16,6 @@ public class AppdotnetAdapter implements ApiAdapter<Appdotnet> {
     @Override
     public boolean test(Appdotnet appNet) {
         try {
-            // TODO Arikg: is getUserProfile the best test? possibly something smaller?
             appNet.usersOperations().getUserProfile();
             return true;
         } catch (Exception e) {

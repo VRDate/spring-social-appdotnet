@@ -15,7 +15,6 @@ import java.util.Map;
  *
  * @author Arik Galansky
  */
-//TODO Arikg: add general parameters to all streams
 class PostsTemplate extends AbstractAppdotnetOperations implements PostsOperations {
 
     public PostsTemplate(String accessToken, RestTemplate restTemplate) {
