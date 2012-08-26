@@ -1,7 +1,7 @@
 spring-social-appdotnet
 =======================
 
-spring social implementation for app.net API
+spring social implementation for app.net API: https://github.com/appdotnet/api-spec
 
 for a simple usage example see https://github.com/arikg/spring-social-appdotnet-example/
 
