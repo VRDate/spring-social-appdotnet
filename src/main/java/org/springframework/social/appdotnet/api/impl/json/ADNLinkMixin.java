@@ -10,7 +10,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
  * @author Arik Galansky
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ADNLinkMixin {
+class ADNLinkMixin {
     @JsonCreator
     ADNLinkMixin(
             @JsonProperty("text") String text,

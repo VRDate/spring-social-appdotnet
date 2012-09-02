@@ -1,10 +1,9 @@
 package org.springframework.social.appdotnet.api.impl;
 
 import org.springframework.social.appdotnet.api.UsersOperations;
-import org.springframework.social.appdotnet.api.data.post.ADNPost;
-import org.springframework.social.appdotnet.api.data.post.ADNPostsList;
+import org.springframework.social.appdotnet.api.data.ADNResponse;
 import org.springframework.social.appdotnet.api.data.user.ADNUser;
-import org.springframework.social.appdotnet.api.data.user.ADNUsersList;
+import org.springframework.social.appdotnet.api.data.user.ADNUsers;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -23,7 +22,7 @@ class UsersTemplate extends AbstractAppdotnetOperations implements UsersOperatio
 
     @Override
     public ADNUser get(String id) {
-        return restTemplate.getForObject(buildUri(id), ADNUser.class);
+        return restTemplate.getForObject(buildUri(id), UserResponse.class).getData();
     }
 
     @Override
@@ -33,7 +32,7 @@ class UsersTemplate extends AbstractAppdotnetOperations implements UsersOperatio
 
     @Override
     public ADNUser follow(String id) {
-        return restTemplate.postForObject(buildUri(id + "follow"), null, ADNUser.class);
+        return restTemplate.getForObject(buildUri(id + "follow"), UserResponse.class).getData();
     }
 
     @Override
@@ -42,18 +41,19 @@ class UsersTemplate extends AbstractAppdotnetOperations implements UsersOperatio
     }
 
     @Override
-    public List<ADNUser> getFollowers(String id) {
-        return restTemplate.getForObject(buildUri(id + "followers"), ADNUsersList.class);
+    public ADNUsers getFollowers(String id) {
+        return getUsers(null, id + "followers");
     }
 
     @Override
-    public List<ADNUser> getFollowing(String id) {
-        return restTemplate.getForObject(buildUri(id + "following"), ADNUsersList.class);
+    public ADNUsers getFollowing(String id) {
+        return getUsers(null, id + "following");
     }
 
     @Override
     public ADNUser mute(String id) {
-        return restTemplate.postForObject(buildUri(id + "mute"), null, ADNUser.class);
+        return restTemplate.postForObject(buildUri(id + "mute"), null, UserResponse.class).getData();
+
     }
 
     @Override
@@ -62,27 +62,14 @@ class UsersTemplate extends AbstractAppdotnetOperations implements UsersOperatio
     }
 
     @Override
-    public List<ADNUser> getMutedUsers() {
-        return restTemplate.getForObject(buildUri("me/following"), ADNUsersList.class);
+    public ADNUsers getMutedUsers() {
+        return getUsers(null, "me/muted");
     }
 
-    @Override
-    public List<ADNPost> getPosts(String userId, Map<String, String> extraParams) {
-        return restTemplate.getForObject(buildUri(userId + "/posts", extraParams), ADNPostsList.class);
-    }
+    // private
 
-    @Override
-    public List<ADNPost> getPosts(String userId) {
-        return getPosts(userId, null);
-    }
-
-    @Override
-    public List<ADNPost> getMentions(String userId, Map<String, String> extraParams) {
-        return restTemplate.getForObject(buildUri(userId + "/mentions", extraParams), ADNPostsList.class);
-    }
-
-    @Override
-    public List<ADNPost> getMentions(String userId) {
-        return getMentions(userId, null);
+    private ADNUsers getUsers(Map<String, String> extraParams, String action) {
+        ADNResponse<List<ADNUser>> response = restTemplate.getForObject(buildUri(action, extraParams), UsersResponse.class);
+        return new ADNUsers(response.getData(), createPaging(response.getMeta()));
     }
 }

@@ -1,8 +1,9 @@
 package org.springframework.social.appdotnet.api.impl;
 
 import org.springframework.social.appdotnet.api.PostsOperations;
+import org.springframework.social.appdotnet.api.data.ADNResponse;
 import org.springframework.social.appdotnet.api.data.post.ADNPost;
-import org.springframework.social.appdotnet.api.data.post.ADNPostsList;
+import org.springframework.social.appdotnet.api.data.post.ADNPosts;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -23,14 +24,14 @@ class PostsTemplate extends AbstractAppdotnetOperations implements PostsOperatio
 
     @Override
     public ADNPost get(String id) {
-        return restTemplate.getForObject(buildUri(id), ADNPost.class);
+        return restTemplate.getForObject(buildUri(id), PostResponse.class).getData();
     }
 
     @Override
     public ADNPost create(String text) {
         MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
         map.add("text", text);
-        return restTemplate.postForObject(buildUri(), map, ADNPost.class);
+        return restTemplate.postForObject(buildUri(), map, PostResponse.class).getData();
     }
 
     @Override
@@ -39,42 +40,75 @@ class PostsTemplate extends AbstractAppdotnetOperations implements PostsOperatio
     }
 
     @Override
-    public List<ADNPost> getPersonalStream(Map<String, String> extraParams) {
-        return restTemplate.getForObject(buildUri("stream", extraParams), ADNPostsList.class);
+    public ADNPosts getPersonalStream(Map<String, String> extraParams) {
+        return getPosts(extraParams, "stream", null);
     }
 
     @Override
-    public List<ADNPost> getPersonalStream() {
+    public ADNPosts getPersonalStream() {
         return getPersonalStream(null);
     }
 
     @Override
-    public List<ADNPost> getGlobalStream(Map<String, String> extraParams) {
-        return restTemplate.getForObject(buildUri("stream/global", extraParams), ADNPostsList.class);
+    public ADNPosts getGlobalStream(Map<String, String> extraParams) {
+        return getPosts(extraParams, "stream/global", null);
     }
 
     @Override
-    public List<ADNPost> getGlobalStream() {
+    public ADNPosts getGlobalStream() {
         return getGlobalStream(null);
     }
 
     @Override
-    public List<ADNPost> getHashtagStream(String hashtag, Map<String, String> extraParams) {
-        return restTemplate.getForObject(buildUri("tag/" + hashtag, extraParams), ADNPostsList.class);
+    public ADNPosts getHashtagStream(String hashtag, Map<String, String> extraParams) {
+        return getPosts(extraParams, "tag/" + hashtag, null);
     }
 
     @Override
-    public List<ADNPost> getHashtagStream(String hashtag) {
+    public ADNPosts getHashtagStream(String hashtag) {
         return getHashtagStream(hashtag, null);
     }
 
     @Override
-    public List<ADNPost> getPostReplies(String id, Map<String, String> extraParams) {
-        return restTemplate.getForObject(buildUri(id + "/replies", extraParams), ADNPostsList.class);
+    public ADNPosts getPostReplies(String id, Map<String, String> extraParams) {
+        return getPosts(extraParams, id + "/replies", null);
     }
 
     @Override
-    public List<ADNPost> getPostReplies(String id) {
+    public ADNPosts getPostReplies(String id) {
         return getPostReplies(id, null);
+    }
+
+    @Override
+    public ADNPosts getUserPosts(String userId, Map<String, String> extraParams) {
+        return getPosts(extraParams, userId + "/posts", "users");
+    }
+
+    @Override
+    public ADNPosts getUserPosts(String userId) {
+        return getUserPosts(userId, null);
+    }
+
+    @Override
+    public ADNPosts getUserMentions(String userId, Map<String, String> extraParams) {
+        return getPosts(extraParams, userId + "/mentions", "users");
+    }
+
+    @Override
+    public ADNPosts getUserMentions(String userId) {
+        return getUserMentions(userId, null);
+    }
+
+    // private
+
+    private ADNPosts getPosts(Map<String, String> extraParams, String action, String resource) {
+        String url;
+        if (resource == null) {
+            url = buildUri(action, extraParams);
+        } else {
+            url = buildUri(resource, action, extraParams);
+        }
+        ADNResponse<List<ADNPost>> response = restTemplate.getForObject(url, PostsResponse.class);
+        return new ADNPosts(response.getData(), createPaging(response.getMeta()));
     }
 }

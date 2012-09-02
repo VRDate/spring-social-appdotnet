@@ -1,8 +1,8 @@
 package org.springframework.social.appdotnet.api;
 
 import org.springframework.social.appdotnet.api.data.post.ADNPost;
+import org.springframework.social.appdotnet.api.data.post.ADNPosts;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -39,60 +39,94 @@ public interface PostsOperations {
     /**
      * Retrieve the latest posts from the user personal stream (this includes only posts from users he is following)
      *
-     * @return List of Post objects
+     * @return A Posts object containing a list of posts and extra data
      */
-    public List<ADNPost> getPersonalStream();
+    public ADNPosts getPersonalStream();
 
     /**
      * Retrieve the latest posts from the user personal stream (this includes only posts from users he is following)
      *
      * @param extraParams extra parameters to modify the query, best used with {@link GeneralParametersBuilder}
-     * @return List of Post objects
+     * @return A Posts object containing a list of posts and extra data
      */
-    public List<ADNPost> getPersonalStream(Map<String, String> extraParams);
+    public ADNPosts getPersonalStream(Map<String, String> extraParams);
 
     /**
      * Retrieve the latest posts from the global stream
      *
-     * @return List of Post objects
+     * @return A Posts object containing a list of posts and extra data
      */
-    public List<ADNPost> getGlobalStream();
+    public ADNPosts getGlobalStream();
 
     /**
      * Retrieve the latest posts from the global stream
      *
      * @param extraParams extra parameters to modify the query, best used with {@link GeneralParametersBuilder}
-     * @return List of Post objects
+     * @return A Posts object containing a list of posts and extra data
      */
-    public List<ADNPost> getGlobalStream(Map<String, String> extraParams);
+    public ADNPosts getGlobalStream(Map<String, String> extraParams);
 
     /**
      * Retrieve the latest posts that contain the specified hashtag
      *
-     * @return List of Post objects
+     * @return A Posts object containing a list of posts and extra data
      */
-    public List<ADNPost> getHashtagStream(String hashtag);
+    public ADNPosts getHashtagStream(String hashtag);
 
     /**
      * Retrieve the latest posts that contain the specified hashtag
      *
      * @param extraParams extra parameters to modify the query, best used with {@link GeneralParametersBuilder}
-     * @return List of Post objects
+     * @return A Posts object containing a list of posts and extra data
      */
-    public List<ADNPost> getHashtagStream(String hashtag, Map<String, String> extraParams);
+    public ADNPosts getHashtagStream(String hashtag, Map<String, String> extraParams);
 
     /**
      * Retrieve all posts that are in the stream of replies to a specified post
      *
-     * @return List of Post objects
+     * @return A Posts object containing a list of posts and extra data
      */
-    public List<ADNPost> getPostReplies(String id);
+    public ADNPosts getPostReplies(String id);
 
     /**
      * Retrieve all posts that are in the stream of replies to a specified post
      *
      * @param extraParams extra parameters to modify the query, best used with {@link GeneralParametersBuilder}
-     * @return List of Post objects
+     * @return A Posts object containing a list of posts and extra data
      */
-    public List<ADNPost> getPostReplies(String id, Map<String, String> extraParams);
+    public ADNPosts getPostReplies(String id, Map<String, String> extraParams);
+
+    /**
+     * Retrieve all posts created by the specified user
+     *
+     * @param userId App.net user ID of the user whose posts you wish to retrieve
+     * @return A Posts object containing a list of posts and extra data
+     */
+    public ADNPosts getUserPosts(String userId);
+
+    /**
+     * Retrieve all posts created by the specified user
+     *
+     * @param userId      App.net user ID of the user whose posts you wish to retrieve
+     * @param extraParams extra parameters to modify the query, best used with {@link GeneralParametersBuilder}
+     * @return A Posts object containing a list of posts and extra data
+     */
+    public ADNPosts getUserPosts(String userId, Map<String, String> extraParams);
+
+    /**
+     * Retrieve all posts that the specified user was mentioned in
+     *
+     * @param userId App.net user ID of the user whose mentions you wish to retrieve
+     * @return A Posts object containing a list of posts and extra data
+     */
+    public ADNPosts getUserMentions(String userId);
+
+    /**
+     * Retrieve all posts that the specified user was mentioned in
+     *
+     * @param userId      userId App.net user ID of the user whose mentions you wish to retrieve
+     * @param extraParams extra parameters to modify the query, best used with {@link GeneralParametersBuilder}
+     * @return A Posts object containing a list of posts and extra data
+     */
+    public ADNPosts getUserMentions(String userId, Map<String, String> extraParams);
 }

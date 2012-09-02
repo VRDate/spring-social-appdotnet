@@ -10,12 +10,13 @@ import org.springframework.web.client.RestTemplate;
  * @author Arik Galansky
  */
 class TokensTemplate extends AbstractAppdotnetOperations implements TokensOperations {
+
     public TokensTemplate(String accessToken, RestTemplate restTemplate) {
         super(accessToken, restTemplate, "token", VERSION_0);
     }
 
     @Override
     public ADNToken getToken() {
-        return restTemplate.getForObject(buildUri(), ADNToken.class);
+        return restTemplate.getForObject(buildUri(), TokenResponse.class).getData();
     }
 }
