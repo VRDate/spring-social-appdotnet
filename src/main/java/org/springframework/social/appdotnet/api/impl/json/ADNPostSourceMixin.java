@@ -14,6 +14,7 @@ abstract class ADNPostSourceMixin {
     @JsonCreator
     ADNPostSourceMixin(
             @JsonProperty("name") String name,
-            @JsonProperty("link") String link) {
+            @JsonProperty("link") String link
+    ) {
     }
 }

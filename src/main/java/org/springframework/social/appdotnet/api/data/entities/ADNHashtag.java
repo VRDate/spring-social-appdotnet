@@ -8,7 +8,7 @@ package org.springframework.social.appdotnet.api.data.entities;
 public class ADNHashtag extends ADNEntity {
     private final String name;
 
-    public ADNHashtag(String name, Integer pos, Integer len) {
+    public ADNHashtag(String name, int pos, int len) {
         super(pos, len);
         this.name = name;
     }
