@@ -10,22 +10,19 @@ import java.util.List;
  * @author Arik Galansky
  */
 public class ADNToken {
-    private ADNUser user;
-    private List<String> scopes;
+    private final ADNUser user;
+    private final List<String> scopes;
+
+    public ADNToken(ADNUser user, List<String> scopes) {
+        this.user = user;
+        this.scopes = scopes;
+    }
 
     public ADNUser getUser() {
         return user;
     }
 
-    public void setUser(ADNUser user) {
-        this.user = user;
-    }
-
     public List<String> getScopes() {
         return scopes;
-    }
-
-    public void setScopes(List<String> scopes) {
-        this.scopes = scopes;
     }
 }

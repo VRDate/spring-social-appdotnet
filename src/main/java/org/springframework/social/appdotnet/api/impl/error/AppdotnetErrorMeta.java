@@ -8,31 +8,25 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 class AppdotnetErrorMeta {
-    private String code;
-    private String error_message;
-    private String error_slug;
+    private int code;
+    private String errorMessage;
+    private String errorSlug;
 
-    public String getCode() {
+    public AppdotnetErrorMeta(int code, String errorMessage, String errorSlug) {
+        this.code = code;
+        this.errorMessage = errorMessage;
+        this.errorSlug = errorSlug;
+    }
+
+    public int getCode() {
         return code;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public String getErrorMessage() {
+        return errorMessage;
     }
 
-    public String getError_message() {
-        return error_message;
-    }
-
-    public void setError_message(String error_message) {
-        this.error_message = error_message;
-    }
-
-    public String getError_slug() {
-        return error_slug;
-    }
-
-    public void setError_slug(String error_slug) {
-        this.error_slug = error_slug;
+    public String getErrorSlug() {
+        return errorSlug;
     }
 }

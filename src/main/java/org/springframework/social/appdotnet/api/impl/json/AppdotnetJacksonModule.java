@@ -2,6 +2,8 @@ package org.springframework.social.appdotnet.api.impl.json;
 
 import org.codehaus.jackson.Version;
 import org.codehaus.jackson.map.module.SimpleModule;
+import org.springframework.social.appdotnet.api.data.ADNResponseMeta;
+import org.springframework.social.appdotnet.api.data.ADNToken;
 import org.springframework.social.appdotnet.api.data.entities.ADNEntities;
 import org.springframework.social.appdotnet.api.data.entities.ADNHashtag;
 import org.springframework.social.appdotnet.api.data.entities.ADNLink;
@@ -38,5 +40,7 @@ public class AppdotnetJacksonModule extends SimpleModule {
         context.setMixInAnnotations(ADNUserDescription.class, ADNUserDescriptionMixin.class);
         context.setMixInAnnotations(ADNUserCounts.class, ADNUserCountsMixin.class);
         context.setMixInAnnotations(ADNImage.class, ADNImageMixin.class);
+        context.setMixInAnnotations(ADNToken.class, ADNTokenMixin.class);
+        context.setMixInAnnotations(ADNResponseMeta.class, ADNResponseMetaMixin.class);
     }
 }

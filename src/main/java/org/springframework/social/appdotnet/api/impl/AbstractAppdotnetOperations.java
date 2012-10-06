@@ -48,7 +48,7 @@ abstract class AbstractAppdotnetOperations {
 
     protected ADNPaging createPaging(ADNResponseMeta meta) {
         if (meta != null) {
-            return new ADNPaging(meta.getMin_id(), meta.getMax_id(), meta.getMore());
+            return new ADNPaging(meta.getMinId(), meta.getMaxId(), meta.hasMore());
         }
         return null;
     }
