@@ -30,11 +30,51 @@ public interface PostsOperations {
     public ADNPost create(String text);
 
     /**
+     * Creates a new simple post replying to a post
+     *
+     * @param text the text of the post to be created
+     * @param replyTo optional id of the post being replied to
+     * @return the post object with all it's meta data (e.g. id, creation time...)
+     */
+    public ADNPost create(String text, String replyTo);
+
+    /**
      * Delete an existing post made by the user
      *
      * @param id the identifier of the post to delete
      */
     public void delete(String id);
+
+    /**
+     * Repost a post
+     *
+     * @param id the identifier of the post to repost
+     * @return an object representing a Post in app.net
+     */
+    public ADNPost repost(String id);
+
+    /**
+     * Unrepost a post
+     *
+     * @param id the identifier of the post to unrepost
+     */
+    public void unrepost(String id);
+
+    /**
+     * Save a given Post to the user's stars.
+     *
+     * @param id the identifier of the post to star
+     * @return an object representing a Post in app.net
+     */
+    public ADNPost star(String id);
+
+
+    /**
+     * Remove a given Post to the user's stars.
+     *
+     * @param id the identifier of the post to unstar
+     */
+    public void unstar(String id);
 
     /**
      * Retrieve the latest posts from the user personal stream (this includes only posts from users he is following)

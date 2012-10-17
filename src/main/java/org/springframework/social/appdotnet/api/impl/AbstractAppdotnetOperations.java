@@ -28,10 +28,6 @@ abstract class AbstractAppdotnetOperations {
         this.defaultResource = name;
     }
 
-    protected String buildUri(String uri, Map<String, String> params) {
-        return buildUri(defaultResource, uri, params);
-    }
-
     protected String buildUri(String resource, String uri, Map<String, String> params) {
         String url = new StringBuilder().append(baseUrl).append(resource).append("/").append(uri).toString();
         URIBuilder builder = URIBuilder.fromUri(url);
@@ -46,11 +42,8 @@ abstract class AbstractAppdotnetOperations {
         return builder.build().toString();
     }
 
-    protected ADNPaging createPaging(ADNResponseMeta meta) {
-        if (meta != null) {
-            return new ADNPaging(meta.getMinId(), meta.getMaxId(), meta.hasMore());
-        }
-        return null;
+    protected String buildUri(String uri, Map<String, String> params) {
+        return buildUri(defaultResource, uri, params);
     }
 
     protected String buildUri(String uri) {
@@ -59,5 +52,12 @@ abstract class AbstractAppdotnetOperations {
 
     protected String buildUri() {
         return buildUri("");
+    }
+
+    protected ADNPaging createPaging(ADNResponseMeta meta) {
+        if (meta != null) {
+            return new ADNPaging(meta.getMinId(), meta.getMaxId(), meta.hasMore());
+        }
+        return null;
     }
 }
