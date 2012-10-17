@@ -146,4 +146,8 @@ public class ADNPost {
     public ADNPost getRepostOf() {
         return repostOf;
     }
+
+    public boolean isRepost() {
+        return (repostOf != null);
+    }
 }
