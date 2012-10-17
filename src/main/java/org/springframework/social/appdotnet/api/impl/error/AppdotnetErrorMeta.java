@@ -1,7 +1,9 @@
 package org.springframework.social.appdotnet.api.impl.error;
 
+import org.codehaus.jackson.annotate.JsonCreator;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
  * @author Arik Galansky
@@ -12,7 +14,8 @@ class AppdotnetErrorMeta {
     private String errorMessage;
     private String errorSlug;
 
-    public AppdotnetErrorMeta(int code, String errorMessage, String errorSlug) {
+    @JsonCreator
+    public AppdotnetErrorMeta(@JsonProperty("code") int code, @JsonProperty("error_message") String errorMessage, @JsonProperty("error_slug") String errorSlug) {
         this.code = code;
         this.errorMessage = errorMessage;
         this.errorSlug = errorSlug;

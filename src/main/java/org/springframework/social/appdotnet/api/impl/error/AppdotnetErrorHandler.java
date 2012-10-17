@@ -62,6 +62,8 @@ public class AppdotnetErrorHandler extends DefaultResponseErrorHandler {
         if ("redirect-uri-required".equals(errorMeta.getErrorSlug())) {
             throw new InvalidAuthorizationException(constructErrorMessage(errorMeta));
         }
+
+        throw new OperationNotPermittedException(constructErrorMessage(errorMeta));
     }
 
     private String constructErrorMessage(AppdotnetErrorMeta errorMeta) {
