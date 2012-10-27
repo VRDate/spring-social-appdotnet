@@ -5,63 +5,44 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 /**
  * @author Arik Galansky
  */
-// TODO Arikg: remove setters
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class ADNResponseMeta {
-    private String max_id;
-    private String min_id;
-    private Boolean more;
-    private String code;
-    private String error_message;
-    private String error_slug;
+    private final int code;
+    private final String maxId;
+    private final String minId;
+    private final boolean more;
+    private final String errorMessage;
+    private final String errorSlug;
 
-    public String getCode() {
+    public ADNResponseMeta(int code, String maxId, String minId, boolean more, String errorMessage, String errorSlug) {
+        this.code = code;
+        this.maxId = maxId;
+        this.minId = minId;
+        this.more = more;
+        this.errorMessage = errorMessage;
+        this.errorSlug = errorSlug;
+    }
+
+    public int getCode() {
         return code;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public String getMaxId() {
+        return maxId;
     }
 
-    public String getError_message() {
-        return error_message;
+    public String getMinId() {
+        return minId;
     }
 
-    public void setError_message(String error_message) {
-        this.error_message = error_message;
-    }
-
-    public String getError_slug() {
-        return error_slug;
-    }
-
-    public void setError_slug(String error_slug) {
-        this.error_slug = error_slug;
-    }
-
-    public String getMax_id() {
-        return max_id;
-    }
-
-    public void setMax_id(String max_id) {
-        this.max_id = max_id;
-    }
-
-    public String getMin_id() {
-        return min_id;
-    }
-
-    public void setMin_id(String min_id) {
-        this.min_id = min_id;
-    }
-
-    public Boolean getMore() {
+    public boolean hasMore() {
         return more;
     }
 
-    public void setMore(Boolean more) {
-        this.more = more;
+    public String getErrorMessage() {
+        return errorMessage;
     }
 
-
+    public String getErrorSlug() {
+        return errorSlug;
+    }
 }

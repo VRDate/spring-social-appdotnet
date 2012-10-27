@@ -9,7 +9,7 @@ public class ADNLink extends ADNEntity {
     private final String text;
     private final String url;
 
-    public ADNLink(String text, String url, Integer pos, Integer len) {
+    public ADNLink(String text, String url, int pos, int len) {
         super(pos, len);
         this.text = text;
         this.url = url;

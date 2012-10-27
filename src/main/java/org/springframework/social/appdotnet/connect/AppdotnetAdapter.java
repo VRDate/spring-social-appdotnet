@@ -28,7 +28,7 @@ public class AppdotnetAdapter implements ApiAdapter<Appdotnet> {
         ADNUser user = appNet.usersOperations().getUserProfile();
         values.setProviderUserId(user.getId());
         values.setDisplayName("@" + user.getUsername());
-        values.setProfileUrl("alpha.app.net/" + user.getUsername());
+        values.setProfileUrl("https://alpha.app.net/" + user.getUsername());
         values.setImageUrl(user.getAvatarImage().getUrl());
     }
 

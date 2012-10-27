@@ -29,14 +29,42 @@ class PostsTemplate extends AbstractAppdotnetOperations implements PostsOperatio
 
     @Override
     public ADNPost create(String text) {
+        return create(text, null);
+    }
+
+    @Override
+    public ADNPost create(String text, String replyTo) {
         MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
         map.add("text", text);
+        if (replyTo != null) {
+            map.add("reply_to", replyTo);
+        }
         return restTemplate.postForObject(buildUri(), map, PostResponse.class).getData();
     }
 
     @Override
     public void delete(String id) {
         restTemplate.delete(buildUri(id));
+    }
+
+    @Override
+    public ADNPost repost(String id) {
+        return restTemplate.postForObject(buildUri(id + "/repost"), null, PostResponse.class).getData();
+    }
+
+    @Override
+    public void unrepost(String id) {
+        restTemplate.delete(buildUri(id + "/repost"));
+    }
+
+    @Override
+    public ADNPost star(String id) {
+        return restTemplate.postForObject(buildUri(id + "/star"), null, PostResponse.class).getData();
+    }
+
+    @Override
+    public void unstar(String id) {
+        restTemplate.delete(buildUri(id + "/star"));
     }
 
     @Override

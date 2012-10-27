@@ -14,8 +14,8 @@ abstract class ADNHashtagMixin {
     @JsonCreator
     ADNHashtagMixin(
             @JsonProperty("name") String name,
-            @JsonProperty("pos") Integer pos,
-            @JsonProperty("len") Integer len
+            @JsonProperty("pos") int pos,
+            @JsonProperty("len") int len
     ) {
     }
 }

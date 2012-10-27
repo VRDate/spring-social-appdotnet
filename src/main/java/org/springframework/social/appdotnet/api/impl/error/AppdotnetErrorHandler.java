@@ -20,7 +20,6 @@ import static org.springframework.http.HttpStatus.Series.SERVER_ERROR;
  */
 public class AppdotnetErrorHandler extends DefaultResponseErrorHandler {
 
-
     @Override
     public void handleError(ClientHttpResponse response) throws IOException {
         HttpStatus statusCode = response.getStatusCode();
@@ -48,30 +47,32 @@ public class AppdotnetErrorHandler extends DefaultResponseErrorHandler {
         if (statusCode == HttpStatus.NOT_FOUND) {
             throw new ResourceNotFoundException(constructErrorMessage(errorMeta));
         }
-        if ("invalid-token".equals(errorMeta.getError_slug())) {
+        if ("invalid-token".equals(errorMeta.getErrorSlug())) {
             throw new InvalidAuthorizationException(constructErrorMessage(errorMeta));
         }
-        if ("not-authorized".equals(errorMeta.getError_slug())) {
+        if ("not-authorized".equals(errorMeta.getErrorSlug())) {
             throw new NotAuthorizedException(constructErrorMessage(errorMeta));
         }
-        if ("token-expired".equals(errorMeta.getError_slug())) {
+        if ("token-expired".equals(errorMeta.getErrorSlug())) {
             throw new ExpiredAuthorizationException();
         }
-        if ("code-used".equals(errorMeta.getError_slug())) {
+        if ("code-used".equals(errorMeta.getErrorSlug())) {
             throw new InvalidAuthorizationException(constructErrorMessage(errorMeta));
         }
-        if ("redirect-uri-required".equals(errorMeta.getError_slug())) {
+        if ("redirect-uri-required".equals(errorMeta.getErrorSlug())) {
             throw new InvalidAuthorizationException(constructErrorMessage(errorMeta));
         }
+
+        throw new OperationNotPermittedException(constructErrorMessage(errorMeta));
     }
 
     private String constructErrorMessage(AppdotnetErrorMeta errorMeta) {
         StringBuilder sb = new StringBuilder();
-        if (errorMeta.getError_slug() != null) {
-            sb.append(errorMeta.getError_slug()).append(": ");
+        if (errorMeta.getErrorSlug() != null) {
+            sb.append(errorMeta.getErrorSlug()).append(": ");
         }
-        if (errorMeta.getError_message() != null) {
-            sb.append(errorMeta.getError_message());
+        if (errorMeta.getErrorMessage() != null) {
+            sb.append(errorMeta.getErrorMessage());
         }
         return sb.toString();
     }

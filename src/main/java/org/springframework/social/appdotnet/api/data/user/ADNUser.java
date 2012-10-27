@@ -1,5 +1,6 @@
 package org.springframework.social.appdotnet.api.data.user;
 
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -16,17 +17,16 @@ public class ADNUser {
     private final ADNImage avatarImage;
     private final ADNImage coverImage;
     private final String type;
-    private final String createdAt;
-    private final Map<String, Integer> counts;
-    // TODO Arikg: String? JSONObject? Object?
-    private final Object appData;
-    private final Boolean followsYou;
-    private final Boolean youFollow;
-    private final Boolean youMuted;
+    private final Date createdAt;
+    private final ADNUserCounts counts;
+    private final Map<String, Object> appData;
+    private final boolean followsYou;
+    private final boolean youFollow;
+    private final boolean youMuted;
 
     public ADNUser(String id, String username, String name, ADNUserDescription description, String timezone,
-                   String locale, ADNImage avatarImage, ADNImage coverImage, String type, String createdAt,
-                   Map<String, Integer> counts, Object appData, Boolean followsYou, Boolean youFollow, Boolean youMuted) {
+                   String locale, ADNImage avatarImage, ADNImage coverImage, String type, Date createdAt,
+                   ADNUserCounts counts, Map<String, Object> appData, boolean followsYou, boolean youFollow, boolean youMuted) {
         this.id = id;
         this.username = username;
         this.name = name;
@@ -80,27 +80,27 @@ public class ADNUser {
         return type;
     }
 
-    public String getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public Map<String, Integer> getCounts() {
+    public ADNUserCounts getCounts() {
         return counts;
     }
 
-    public Object getAppData() {
+    public Map<String, Object> getAppData() {
         return appData;
     }
 
-    public Boolean followsYou() {
+    public boolean isFollowsYou() {
         return followsYou;
     }
 
-    public Boolean youFollow() {
+    public boolean isYouFollow() {
         return youFollow;
     }
 
-    public Boolean youMuted() {
+    public boolean isYouMuted() {
         return youMuted;
     }
 }

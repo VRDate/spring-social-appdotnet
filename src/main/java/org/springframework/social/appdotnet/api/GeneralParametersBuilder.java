@@ -35,18 +35,43 @@ public class GeneralParametersBuilder {
         return this;
     }
 
-    public GeneralParametersBuilder includeUser(Boolean value) {
-        parameters.put("include_user", Boolean.toString(value));
+    public GeneralParametersBuilder includeMuted(boolean value) {
+        parameters.put("include_muted", value ? "1" : "0");
         return this;
     }
 
-    public GeneralParametersBuilder includeReplies(Boolean value) {
-        parameters.put("include_replies", Boolean.toString(value));
+    public GeneralParametersBuilder includeDeleted(boolean value) {
+        parameters.put("include_deleted", value ? "1" : "0");
         return this;
     }
 
-    public GeneralParametersBuilder includeAnnotations(Boolean value) {
-        parameters.put("include_annotations", Boolean.toString(value));
+    public GeneralParametersBuilder includeDirectedPosts(boolean value) {
+        parameters.put("include_directed_posts", value ? "1" : "0");
+        return this;
+    }
+
+    public GeneralParametersBuilder includeMachine(boolean value) {
+        parameters.put("include_machine", value ? "1" : "0");
+        return this;
+    }
+
+    public GeneralParametersBuilder includeAnnotations(boolean value) {
+        parameters.put("include_annotations", value ? "1" : "0");
+        return this;
+    }
+
+    public GeneralParametersBuilder includeStarredBy(boolean value) {
+        parameters.put("include_starred_by", value ? "1" : "0");
+        return this;
+    }
+
+    public GeneralParametersBuilder includeReposters(boolean value) {
+        parameters.put("include_reposters", value ? "1" : "0");
+        return this;
+    }
+
+    public GeneralParametersBuilder includeUser(boolean value) {
+        parameters.put("include_user", value ? "1" : "0");
         return this;
     }
 
