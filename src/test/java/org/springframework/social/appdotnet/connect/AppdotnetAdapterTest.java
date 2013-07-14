@@ -28,6 +28,6 @@ public class AppdotnetAdapterTest {
     }
 
     private ADNUser createBasicUser() {
-        return new ADNUser("123", "arikg", "Arik Galansky", null, null, null, null, null, null, null, null, null, false, false, false, false, false, false, null, null, null);
+        return new ADNUser("123", "arikg", "Arik Galansky", null, null, null, null, null, "human", null, null, null, false, false, false, false, false, false, null, null, null);
     }
 }
