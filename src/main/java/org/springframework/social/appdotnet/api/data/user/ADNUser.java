@@ -24,6 +24,7 @@ public class ADNUser {
     private final ADNUserCounts counts;
     private final Map<String, Object> appData;
     private final boolean followsYou;
+    private final boolean youBlocked;
     private final boolean youFollow;
     private final boolean youMuted;
     private final boolean youCanSubscribe;
@@ -36,7 +37,7 @@ public class ADNUser {
         HUMAN, FEED, BOT
     }
 
-    public ADNUser(String id, String username, String name, ADNUserDescription description, String timezone, String locale, ADNImage avatarImage, ADNImage coverImage, String type, Date createdAt, ADNUserCounts counts, Map<String, Object> appData, boolean followsYou, boolean youFollow, boolean youMuted, boolean youCanSubscribe, boolean youCanFollow, String verifiedDomain, String canonicalUrl, List<ADNAnnotation> annotations) {
+    public ADNUser(String id, String username, String name, ADNUserDescription description, String timezone, String locale, ADNImage avatarImage, ADNImage coverImage, String type, Date createdAt, ADNUserCounts counts, Map<String, Object> appData, boolean followsYou, boolean youBlocked, boolean youFollow, boolean youMuted, boolean youCanSubscribe, boolean youCanFollow, String verifiedDomain, String canonicalUrl, List<ADNAnnotation> annotations) {
         this.id = id;
         this.username = username;
         this.name = name;
@@ -50,6 +51,7 @@ public class ADNUser {
         this.counts = counts;
         this.appData = appData;
         this.followsYou = followsYou;
+        this.youBlocked = youBlocked;
         this.youFollow = youFollow;
         this.youMuted = youMuted;
         this.youCanSubscribe = youCanSubscribe;
@@ -121,6 +123,10 @@ public class ADNUser {
 
     public boolean isFollowsYou() {
         return followsYou;
+    }
+
+    public boolean isYouBlocked() {
+        return youBlocked;
     }
 
     public boolean isYouFollow() {

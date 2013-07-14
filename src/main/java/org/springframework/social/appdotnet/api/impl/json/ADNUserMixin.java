@@ -34,6 +34,7 @@ abstract class ADNUserMixin {
             @JsonProperty("counts") ADNUserCounts counts,
             @JsonProperty("app_data") Map<String, Object> appData,
             @JsonProperty("follows_you") boolean followsYou,
+            @JsonProperty("you_blocked") boolean youBlocked,
             @JsonProperty("you_follow") boolean youFollow,
             @JsonProperty("you_muted") boolean youMuted,
             @JsonProperty("you_can_subscribe") boolean youCanSubscribe,

@@ -22,6 +22,8 @@ import static java.util.Collections.singletonList;
  */
 public class AppdotnetTemplate extends AbstractOAuth2ApiBinding implements Appdotnet {
 
+    public static final String BASE_URL = "https://alpha-api.app.net/stream/";
+
     private PostsOperations postsOperations;
     private UsersOperations usersOperations;
     private TokensOperations tokensOperations;

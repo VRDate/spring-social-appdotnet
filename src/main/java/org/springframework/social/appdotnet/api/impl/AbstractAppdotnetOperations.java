@@ -23,8 +23,7 @@ abstract class AbstractAppdotnetOperations {
     public AbstractAppdotnetOperations(String accessToken, RestTemplate restTemplate, String name, String version) {
         this.restTemplate = restTemplate;
         this.accessToken = accessToken;
-        this.baseUrl = new StringBuilder().append("https://alpha-api.app.net/stream/")
-                .append(version).append("/").toString();
+        this.baseUrl = AppdotnetTemplate.BASE_URL + version + "/";
         this.defaultResource = name;
     }
 
