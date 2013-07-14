@@ -7,7 +7,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
 import java.util.Map;
 
 /**
- * Mixin class for adding Jackson annotations to {@link org.springframework.social.appdotnet.api.data.post.ADNAnnotation}
+ * Mixin class for adding Jackson annotations to {@link org.springframework.social.appdotnet.api.data.ADNAnnotation}
  *
  * @author Arik Galansky
  */

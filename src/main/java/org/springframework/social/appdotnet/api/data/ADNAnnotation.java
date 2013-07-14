@@ -1,4 +1,4 @@
-package org.springframework.social.appdotnet.api.data.post;
+package org.springframework.social.appdotnet.api.data;
 
 import java.util.Map;
 

@@ -15,10 +15,10 @@ import java.util.Map;
 public class ADNUserCountsMixin {
     @JsonCreator
     ADNUserCountsMixin(
-            @JsonProperty("following") int followingCount,
-            @JsonProperty("followers") int followerCount,
-            @JsonProperty("posts") int postCount,
-            @JsonProperty("stars") int starCount
+            @JsonProperty("following") int following,
+            @JsonProperty("followers") int followers,
+            @JsonProperty("posts") int posts,
+            @JsonProperty("stars") int stars
     ) {
     }
 }

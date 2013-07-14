@@ -15,8 +15,9 @@ class ADNLinkMixin {
     ADNLinkMixin(
             @JsonProperty("text") String text,
             @JsonProperty("url") String url,
-            @JsonProperty("pos") int pos,
-            @JsonProperty("len") int len
+            @JsonProperty("pos") int position,
+            @JsonProperty("len") int length,
+            @JsonProperty("amended_len") Integer amendedLength
     ) {
     }
 }

@@ -15,7 +15,8 @@ abstract class ADNImageMixin {
     ADNImageMixin(
             @JsonProperty("height") int height,
             @JsonProperty("width") int width,
-            @JsonProperty("url") String url
+            @JsonProperty("url") String url,
+            @JsonProperty("is_default") boolean isDefault
     ) {
     }
 }

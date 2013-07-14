@@ -15,8 +15,8 @@ abstract class ADNMentionMixin {
     ADNMentionMixin(
             @JsonProperty("name") String name,
             @JsonProperty("id") String id,
-            @JsonProperty("pos") int pos,
-            @JsonProperty("len") int len
+            @JsonProperty("pos") int position,
+            @JsonProperty("len") int length
     ) {
     }
 }

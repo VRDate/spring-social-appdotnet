@@ -4,7 +4,7 @@ import org.codehaus.jackson.annotate.JsonCreator;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.springframework.social.appdotnet.api.data.entities.ADNEntities;
-import org.springframework.social.appdotnet.api.data.post.ADNAnnotation;
+import org.springframework.social.appdotnet.api.data.ADNAnnotation;
 import org.springframework.social.appdotnet.api.data.post.ADNPost;
 import org.springframework.social.appdotnet.api.data.post.ADNPostSource;
 import org.springframework.social.appdotnet.api.data.user.ADNUser;
