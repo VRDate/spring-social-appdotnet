@@ -69,7 +69,7 @@ public class UsersTemplateTest extends AbstractAppdotnetApiTest{
 
     @Test
     public void getUsers() {
-        mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL + "0/users/?access_token=ACCESS_TOKEN&ids=1%252C2")).andExpect(method(GET))
+        mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL + "0/users/?access_token=ACCESS_TOKEN&ids=1%2C2")).andExpect(method(GET))
                 .andRespond(withSuccess(new ClassPathResource("/testdata/users.json", getClass()), MediaType.APPLICATION_JSON));
         ADNUsers users = appdotnet.usersOperations().get(Arrays.asList("1", "2"));
         assertEquals(2, users.getUsers().size());
