@@ -117,7 +117,7 @@ public interface PostsOperations {
      * Retrieve the latest posts that contain the specified hashtag
      *
      * @param extraParams extra parameters to modify the query, best used with {@link GeneralParametersBuilder}
-     * @return A Posts object containing a list of posts and extra data
+     * @return A    Posts object containing a list of posts and extra data
      */
     public ADNPosts getHashtagStream(String hashtag, Map<String, String> extraParams);
 

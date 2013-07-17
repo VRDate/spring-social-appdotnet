@@ -1,0 +1,125 @@
+{"meta": {
+    "code": 200
+}, "data": [
+    {
+        "you_muted": false,
+        "you_can_subscribe": true,
+        "is_following": false,
+        "is_follower": true,
+        "timezone": "America/Los_Angeles",
+        "you_follow": true,
+        "counts": {
+            "following": 672,
+            "posts": 11604,
+            "followers": 15139,
+            "stars": 6507
+        },
+        "canonical_url": "https://alpha.app.net/dalton",
+        "id": "1",
+        "locale": "en_US",
+        "type": "human",
+        "username": "dalton",
+        "avatar_image": {
+            "url": "https://d2rfichhc2fb9n.cloudfront.net/image/5/IE7DNB7N4XE9OjQuP16-9zaPU1x7InMiOiJzMyIsImIiOiJhZG4tdXNlci1hc3NldHMiLCJrIjoiYXNzZXRzL3VzZXIvODgvNjgvNDAvODg2ODQwMDAwMDAwMDAwMC5qcGciLCJvIjoiIn0",
+            "width": 138,
+            "is_default": false,
+            "height": 138
+        },
+        "description": {
+            "text": "Founder/CEO App.net \nBlog: daltoncaldwell.com",
+            "html": "<span itemscope=\"https://app.net/schemas/Post\">Founder/CEO <a href=\"http://App.net\">App.net</a> <br>Blog: <a href=\"http://daltoncaldwell.com\">daltoncaldwell.com</a></span>",
+            "entities": {
+                "mentions": [],
+                "hashtags": [],
+                "links": [
+                    {
+                        "url": "http://App.net",
+                        "text": "App.net",
+                        "pos": 12,
+                        "len": 7
+                    },
+                    {
+                        "url": "http://daltoncaldwell.com",
+                        "text": "daltoncaldwell.com",
+                        "pos": 27,
+                        "len": 18
+                    }
+                ]
+            }
+        },
+        "is_muted": false,
+        "follows_you": false,
+        "you_can_follow": true,
+        "verified_domain": "daltoncaldwell.com",
+        "name": "Dalton Caldwell",
+        "created_at": "2012-08-03T01:17:14Z",
+        "cover_image": {
+            "url": "https://d2rfichhc2fb9n.cloudfront.net/image/5/iV3sRFel7xEjDK7hCB9R0xgIFAF7InMiOiJzMyIsImIiOiJhZG4tdXNlci1hc3NldHMiLCJrIjoiYXNzZXRzL3VzZXIvNDIvMDAvMDAvNDIwMDAwMDAwMDAwMDAwMC5wbmciLCJvIjoiIn0",
+            "width": 1103,
+            "is_default": false,
+            "height": 456
+        },
+        "you_blocked": false
+    },
+    {
+        "you_muted": false,
+        "you_can_subscribe": true,
+        "is_following": false,
+        "is_follower": true,
+        "timezone": "America/Los_Angeles",
+        "you_follow": true,
+        "counts": {
+            "following": 421,
+            "posts": 5159,
+            "followers": 6224,
+            "stars": 361
+        },
+        "canonical_url": "https://alpha.app.net/berg",
+        "id": "2",
+        "locale": "en_US",
+        "type": "human",
+        "username": "berg",
+        "avatar_image": {
+            "url": "https://d2rfichhc2fb9n.cloudfront.net/image/5/H-qReOc1lSxnMq_yltUBrfXBF_57InMiOiJzMyIsImIiOiJhZG4tdXNlci1hc3NldHMiLCJrIjoiYXNzZXRzL3VzZXIvNGYvMzgvNDAvNGYzODQwMDAwMDAwMDAwMC5qcGciLCJvIjoiIn0",
+            "width": 640,
+            "is_default": false,
+            "height": 640
+        },
+        "description": {
+            "text": "cofounder of app.net along with @dalton. build first, ask questions later.",
+            "html": "<span itemscope=\"https://app.net/schemas/Post\">cofounder of <a href=\"http://app.net\">app.net</a> along with <span itemprop=\"mention\" data-mention-id=\"1\" data-mention-name=\"dalton\">@dalton</span>. build first, ask questions later.</span>",
+            "entities": {
+                "mentions": [
+                    {
+                        "name": "dalton",
+                        "pos": 32,
+                        "len": 7,
+                        "id": "1"
+                    }
+                ],
+                "hashtags": [],
+                "links": [
+                    {
+                        "url": "http://app.net",
+                        "text": "app.net",
+                        "pos": 13,
+                        "len": 7
+                    }
+                ]
+            }
+        },
+        "is_muted": false,
+        "follows_you": false,
+        "you_can_follow": true,
+        "verified_domain": "ber.gd",
+        "name": "Bryan Berg",
+        "created_at": "2012-08-03T01:22:21Z",
+        "cover_image": {
+            "url": "https://d2rfichhc2fb9n.cloudfront.net/image/5/VOoYlbk-42RT7NpgDteW5yzGl_N7InMiOiJzMyIsImIiOiJhZG4tdXNlci1hc3NldHMiLCJrIjoiYXNzZXRzL3VzZXIvNzYvYzcvMTAvNzZjNzEwMDAwMDAwMDAwMC5qcGciLCJvIjoiIn0",
+            "width": 2048,
+            "is_default": false,
+            "height": 1365
+        },
+        "you_blocked": false
+    }
+]}

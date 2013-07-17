@@ -3,12 +3,16 @@ package org.springframework.social.appdotnet.api;
 import org.springframework.social.appdotnet.api.data.user.ADNUser;
 import org.springframework.social.appdotnet.api.data.user.ADNUsers;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * Interface defining the operations for retrieving information about App.net users.
  *
  * @author Arik Galansky
  */
 public interface UsersOperations {
+
     /**
      * Retrieve a specific user's information
      *
@@ -18,11 +22,64 @@ public interface UsersOperations {
     public ADNUser get(String id);
 
     /**
+     * Retrieve a specific user's information
+     *
+     * @param id user id of the user to get
+     * @param extraParams extra parameters to modify the query, best used with {@link GeneralUserParametersBuilder}
+     * @return User an {@link ADNUser} object representing requested user profile
+     */
+    public ADNUser get(String id, Map<String, String> extraParams);
+
+    /**
      * Retrieve currently logged in user information
      *
      * @return User an {@link ADNUser} object representing current user profile
      */
     public ADNUser getUserProfile();
+
+    /**
+     * Retrieve currently logged in user information
+
+     * @param extraParams extra parameters to modify the query, best used with {@link GeneralUserParametersBuilder}
+     * @return User an {@link ADNUser} object representing current user profile
+     */
+    public ADNUser getUserProfile(Map<String, String> extraParams);
+
+    /**
+     * Retrieve a information for a list of users
+     *
+     * @param ids a list of user id's of the users to get
+     * @return a List of {@link ADNUser} objects representing requested users profile
+     */
+    public ADNUsers get(List<String> ids);
+
+    /**
+     * Retrieve a information for a list of users
+     *
+     * @param ids a list of user id's of the users to get
+     * @param extraParams extra parameters to modify the query, best used with {@link GeneralUserParametersBuilder}
+     * @return a List of {@link ADNUser} objects representing requested users profile
+     */
+    public ADNUsers get(List<String> ids, Map<String, String> extraParams);
+
+    /**
+     * Search the App.net user base.
+     *
+     * @param q The search query. Supports @username or #tag searches as well as normal search terms. Searches username, display name, bio information. Does not search posts.
+     * @param count (Optional) The number of Users to return, up to a maximum of 200. Defaults to 20 if not specified.
+     * @return a List of {@link ADNUser} objects representing requested users profile
+     */
+    public ADNUsers search(String q, Integer count);
+
+    /**
+     * Search the App.net user base.
+     *
+     * @param q The search query. Supports @username or #tag searches as well as normal search terms. Searches username, display name, bio information. Does not search posts.
+     * @param count (Optional) The number of Users to return, up to a maximum of 200. Defaults to 20 if not specified.
+     * @param extraParams extra parameters to modify the query, best used with {@link GeneralUserParametersBuilder}
+     * @return a List of {@link ADNUser} objects representing requested users profile
+     */
+    public ADNUsers search(String q, Integer count, Map<String, String> extraParams);
 
     /**
      * Start following the user who's ID was specified

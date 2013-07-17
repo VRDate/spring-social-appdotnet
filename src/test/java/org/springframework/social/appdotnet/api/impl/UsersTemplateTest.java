@@ -4,6 +4,9 @@ import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
 import org.springframework.social.appdotnet.api.data.user.ADNUser;
+import org.springframework.social.appdotnet.api.data.user.ADNUsers;
+
+import java.util.Arrays;
 
 import static junit.framework.Assert.assertEquals;
 import static org.springframework.http.HttpMethod.GET;
@@ -17,13 +20,11 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 public class UsersTemplateTest extends AbstractAppdotnetApiTest{
 
     @Test
-    public void getUserProfile() {
+    public void getUser() {
         mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL + "0/users/me?access_token=ACCESS_TOKEN")).andExpect(method(GET))
                 .andRespond(withSuccess(new ClassPathResource("/testdata/user.json", getClass()), MediaType.APPLICATION_JSON));
         ADNUser user = appdotnet.usersOperations().getUserProfile();
-        assertEquals("1", user.getId());
-        assertEquals("mthurman", user.getUsername());
-        assertEquals("Mark Thurman", user.getName());
+        assertBasicUser(user, "1", "mthurman", "Mark Thurman");
 
         assertEquals("Hi, I'm Mark Thurman and I'm teaching you about the @appdotnet Stream #API.", user.getDescription().getText());
         assertEquals("Hi, I'm Mark Thurman and I'm <a href=\"https://github.com/appdotnet/api_spec\" rel=\"nofollow\">teaching you</a> about the <span itemprop=\"mention\" data-mention-name=\"appdotnet\" data-mention-id=\"3\">@appdotnet</span> Stream #<span itemprop=\"hashtag\" data-hashtag-name=\"api\">API</span>.", user.getDescription().getHtml());
@@ -64,6 +65,16 @@ public class UsersTemplateTest extends AbstractAppdotnetApiTest{
         assertEquals("https://alpha.app.net/mthurman", user.getCanonicalUrl());
 
         assertEqualsAnnotation(user, 0, "net.app.core.directory.blog", "url", "http://myawesomeblog.com");
+    }
+
+    @Test
+    public void getUsers() {
+        mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL + "0/users/?access_token=ACCESS_TOKEN&ids=1%252C2")).andExpect(method(GET))
+                .andRespond(withSuccess(new ClassPathResource("/testdata/users.json", getClass()), MediaType.APPLICATION_JSON));
+        ADNUsers users = appdotnet.usersOperations().get(Arrays.asList("1", "2"));
+        assertEquals(2, users.getUsers().size());
+        assertBasicUser(users.getUsers().get(0), "1", "dalton", "Dalton Caldwell");
+        assertBasicUser(users.getUsers().get(1), "2", "berg", "Bryan Berg");
     }
 
     private void assertEqualsAnnotation(ADNUser user, int expectedIndex, String expectedType, String expectedValueKey, String expectedValueValue) {

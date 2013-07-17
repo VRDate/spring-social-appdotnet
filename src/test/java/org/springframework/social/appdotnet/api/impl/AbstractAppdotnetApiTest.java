@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.social.appdotnet.api.data.user.ADNImage;
+import org.springframework.social.appdotnet.api.data.user.ADNUser;
 import org.springframework.test.web.client.MockRestServiceServer;
 
 import java.text.SimpleDateFormat;
@@ -26,6 +27,12 @@ public class AbstractAppdotnetApiTest {
         mockServer = MockRestServiceServer.createServer(appdotnet.getRestTemplate());
         responseHeaders = new HttpHeaders();
         responseHeaders.setContentType(MediaType.APPLICATION_JSON);
+    }
+
+    protected void assertBasicUser(ADNUser adnUser, String expectedId, String expectedUsername, String expectedName) {
+        assertEquals(expectedId, adnUser.getId());
+        assertEquals(expectedUsername, adnUser.getUsername());
+        assertEquals(expectedName, adnUser.getName());
     }
 
     protected void assertEqualsDate(Date createdAt, String expectedDateTime) {

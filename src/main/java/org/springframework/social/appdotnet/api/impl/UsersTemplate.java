@@ -6,6 +6,7 @@ import org.springframework.social.appdotnet.api.data.user.ADNUser;
 import org.springframework.social.appdotnet.api.data.user.ADNUsers;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,43 +23,84 @@ class UsersTemplate extends AbstractAppdotnetOperations implements UsersOperatio
 
     @Override
     public ADNUser get(String id) {
-        return restTemplate.getForObject(buildUri(id), UserResponse.class).getData();
+        return get(id, null);
+    }
+
+    @Override
+    public ADNUser get(String id, Map<String, String> extraParams) {
+        return restTemplate.getForObject(buildUri(id, extraParams), UserResponse.class).getData();
     }
 
     @Override
     public ADNUser getUserProfile() {
-        return get("me");
+        return getUserProfile(null);
+    }
+
+    @Override
+    public ADNUser getUserProfile(Map<String, String> extraParams) {
+        return get("me", extraParams);
+    }
+
+    @Override
+    public ADNUsers get(List<String> ids) {
+        return get(ids, null);
+    }
+
+    @Override
+    public ADNUsers get(List<String> ids, Map<String, String> extraParams) {
+        if(extraParams == null) {
+            extraParams = new HashMap<String, String>();
+        }
+        extraParams.put("ids", concatListToString(ids));
+        return getUsers(extraParams, "");
+    }
+
+    @Override
+    public ADNUsers search(String q, Integer count) {
+        return search(q,count, null);
+    }
+
+    @Override
+    public ADNUsers search(String q, Integer count, Map<String, String> extraParams) {
+        if(extraParams == null) {
+            extraParams = new HashMap<String, String>();
+        }
+        extraParams.put("q", q);
+        if(count != null) {
+            extraParams.put("count", count.toString());
+        }
+        return getUsers(extraParams, "search");
     }
 
     @Override
     public ADNUser follow(String id) {
-        return restTemplate.getForObject(buildUri(id + "follow"), UserResponse.class).getData();
+        return restTemplate.getForObject(buildUri(id + "/follow"), UserResponse.class).getData();
     }
 
     @Override
     public void unfollow(String id) {
-        restTemplate.delete(buildUri(id + "follow"));
+        restTemplate.delete(buildUri(id + "/follow"));
     }
 
     @Override
     public ADNUsers getFollowers(String id) {
-        return getUsers(null, id + "followers");
+        return getUsers(null, id + "/followers");
     }
 
     @Override
     public ADNUsers getFollowing(String id) {
-        return getUsers(null, id + "following");
+        return getUsers(null, id + "/following");
     }
 
     @Override
     public ADNUser mute(String id) {
-        return restTemplate.postForObject(buildUri(id + "mute"), null, UserResponse.class).getData();
+        return restTemplate.postForObject(buildUri(id + "/mute"), null, UserResponse.class).getData();
 
     }
 
     @Override
     public void unmute(String id) {
-        restTemplate.delete(buildUri(id + "mute"));
+        restTemplate.delete(buildUri(id + "/mute"));
     }
 
     @Override
@@ -71,5 +113,15 @@ class UsersTemplate extends AbstractAppdotnetOperations implements UsersOperatio
     private ADNUsers getUsers(Map<String, String> extraParams, String action) {
         ADNResponse<List<ADNUser>> response = restTemplate.getForObject(buildUri(action, extraParams), UsersResponse.class);
         return new ADNUsers(response.getData(), createPaging(response.getMeta()));
+    }
+
+    private String concatListToString(List<String> items) {
+        StringBuilder sb = new StringBuilder();
+        String delim = "";
+        for (String i : items) {
+            sb.append(delim).append(i);
+            delim = ",";
+        }
+        return sb.toString();
     }
 }
