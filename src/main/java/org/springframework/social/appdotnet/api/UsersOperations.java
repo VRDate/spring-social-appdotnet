@@ -159,4 +159,35 @@ public interface UsersOperations {
      */
     public ADNUsers getMutedUsers(String id);
 
+    /**
+     * Block the user who's ID was specified
+     *
+     * @param id App.net user id of the user you wish to mute
+     * @return an {@link ADNUser} object representing the user that that is blocked
+     */
+    public ADNUser block(String id);
+
+    /**
+     * Un-Block the user who's ID was specified
+     *
+     * @param id App.net user id of the user you remove from blocked list
+     */
+    public void unblock(String id);
+
+    /**
+     * Get all the users that the currently logged in user blocked.
+     *
+     * @return a List of {@link ADNUser} objects representing all the users that the logged in user blocked
+     */
+    public ADNUsers getBlockedUsers();
+
+    /**
+     * Get all the users that the currently logged in user blocked.
+
+     * @param id App.net user id of the user you want a list of all the users he blocked.
+     *
+     * @return a List of {@link ADNUser} objects representing all the users that the logged in user blocked
+     */
+    public ADNUsers getBlockedUsers(String id);
+
 }

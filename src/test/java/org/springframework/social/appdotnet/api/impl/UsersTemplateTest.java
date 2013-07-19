@@ -226,4 +226,39 @@ public class UsersTemplateTest extends AbstractAppdotnetApiTest {
         assertBasicUser(users.getUsers().get(1), "2", "berg", "Bryan Berg");
     }
 
+    @Test
+    public void block() {
+        mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL + "0/users/1/block?access_token=ACCESS_TOKEN")).andExpect(method(POST))
+                .andRespond(withSuccess(new ClassPathResource("/testdata/user.json", getClass()), MediaType.APPLICATION_JSON));
+        ADNUser user = appdotnet.usersOperations().block("1");
+        assertBasicUser(user, "1", "mthurman", "Mark Thurman");
+    }
+
+    @Test
+    public void unblock() {
+        mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL + "0/users/1/block?access_token=ACCESS_TOKEN")).andExpect(method(DELETE))
+                .andRespond(withSuccess(new ClassPathResource("/testdata/user.json", getClass()), MediaType.APPLICATION_JSON));
+        appdotnet.usersOperations().unblock("1");
+    }
+
+    @Test
+    public void getBlocked() {
+        mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL + "0/users/1/blocked?access_token=ACCESS_TOKEN")).andExpect(method(GET))
+                .andRespond(withSuccess(new ClassPathResource("/testdata/users.json", getClass()), MediaType.APPLICATION_JSON));
+        ADNUsers users = appdotnet.usersOperations().getBlockedUsers("1");
+        assertEquals(2, users.getUsers().size());
+        assertBasicUser(users.getUsers().get(0), "1", "dalton", "Dalton Caldwell");
+        assertBasicUser(users.getUsers().get(1), "2", "berg", "Bryan Berg");
+    }
+
+    @Test
+    public void getBlockedMe() {
+        mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL + "0/users/me/blocked?access_token=ACCESS_TOKEN")).andExpect(method(GET))
+                .andRespond(withSuccess(new ClassPathResource("/testdata/users.json", getClass()), MediaType.APPLICATION_JSON));
+        ADNUsers users = appdotnet.usersOperations().getBlockedUsers();
+        assertEquals(2, users.getUsers().size());
+        assertBasicUser(users.getUsers().get(0), "1", "dalton", "Dalton Caldwell");
+        assertBasicUser(users.getUsers().get(1), "2", "berg", "Bryan Berg");
+    }
+
 }

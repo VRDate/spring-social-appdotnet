@@ -115,12 +115,32 @@ class UsersTemplate extends AbstractAppdotnetOperations implements UsersOperatio
 
     @Override
     public ADNUsers getMutedUsers() {
-        return getUsers(null, "me/muted");
+        return getMutedUsers("me");
     }
 
     @Override
     public ADNUsers getMutedUsers(String id) {
         return getUsers(null, id + "/muted");
+    }
+
+    @Override
+    public ADNUser block(String id) {
+        return restTemplate.postForObject(buildUri(id + "/block"), null, UserResponse.class).getData();
+    }
+
+    @Override
+    public void unblock(String id) {
+        restTemplate.delete(buildUri(id + "/block"));
+    }
+
+    @Override
+    public ADNUsers getBlockedUsers() {
+        return getBlockedUsers("me");
+    }
+
+    @Override
+    public ADNUsers getBlockedUsers(String id) {
+        return getUsers(null, id + "/blocked");
     }
 
     // private
