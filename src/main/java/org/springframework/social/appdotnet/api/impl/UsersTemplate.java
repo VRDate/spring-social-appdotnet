@@ -74,7 +74,7 @@ class UsersTemplate extends AbstractAppdotnetOperations implements UsersOperatio
 
     @Override
     public ADNUser follow(String id) {
-        return restTemplate.getForObject(buildUri(id + "/follow"), UserResponse.class).getData();
+        return restTemplate.postForObject(buildUri(id + "/follow"), null, UserResponse.class).getData();
     }
 
     @Override
@@ -88,8 +88,19 @@ class UsersTemplate extends AbstractAppdotnetOperations implements UsersOperatio
     }
 
     @Override
+    public List<String> getFollowersIds(String id) {
+//        return (List<String>) restTemplate.getForObject(buildUri(id + "/following/ids"), new ADNResponse<List<String>>().getClass()).getData();
+        return (List<String>) restTemplate.getForObject(buildUri(id + "/followers/ids"), ADNResponse.class).getData();
+    }
+
+    @Override
     public ADNUsers getFollowing(String id) {
         return getUsers(null, id + "/following");
+    }
+
+    @Override
+    public List<String> getFollowingIds(String id) {
+        return (List<String>) restTemplate.getForObject(buildUri(id + "/following/ids"), ADNResponse.class).getData();
     }
 
     @Override

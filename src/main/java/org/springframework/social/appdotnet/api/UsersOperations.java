@@ -105,12 +105,28 @@ public interface UsersOperations {
     public ADNUsers getFollowers(String id);
 
     /**
+     * Get all the followers of the user specified
+     *
+     * @param id App.net id of the user you wish to get followers of
+     * @return a List of {@link ADNUser} objects representing all the user's followers
+     */
+    public List<String> getFollowersIds(String id);
+
+    /**
      * Get all the users that the specified user is following
      *
      * @param id App.net id of the user you wish to get a following list of
-     * @return a List of {@link ADNUser} objects representing all the users that the specified user is following
+     * @return a List of strings representing all the users that the specified user is following
      */
     public ADNUsers getFollowing(String id);
+
+    /**
+     * Get all the ids of users that the specified user is following
+     *
+     * @param id App.net id of the user you wish to get a following list of
+     * @return a List of strings representing all the user ids that the specified user is following
+     */
+    public List<String> getFollowingIds(String id);
 
     /**
      * Mute the user who's ID was specified

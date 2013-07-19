@@ -8,9 +8,12 @@ import org.springframework.social.appdotnet.api.data.user.ADNUser;
 import org.springframework.social.appdotnet.api.data.user.ADNUsers;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
+import static org.springframework.http.HttpMethod.DELETE;
 import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.POST;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
@@ -131,5 +134,60 @@ public class UsersTemplateTest extends AbstractAppdotnetApiTest {
         assertEquals(2, users.getUsers().size());
         assertBasicUser(users.getUsers().get(0), "1", "dalton", "Dalton Caldwell");
         assertBasicUser(users.getUsers().get(1), "2", "berg", "Bryan Berg");
+    }
+
+    @Test
+    public void getFollowers() {
+        mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL + "0/users/1/followers?access_token=ACCESS_TOKEN")).andExpect(method(GET))
+                .andRespond(withSuccess(new ClassPathResource("/testdata/users.json", getClass()), MediaType.APPLICATION_JSON));
+        ADNUsers users = appdotnet.usersOperations().getFollowers("1");
+        assertEquals(2, users.getUsers().size());
+        assertBasicUser(users.getUsers().get(0), "1", "dalton", "Dalton Caldwell");
+        assertBasicUser(users.getUsers().get(1), "2", "berg", "Bryan Berg");
+    }
+
+    @Test
+    public void getFollowersIds() {
+        mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL + "0/users/1/followers/ids?access_token=ACCESS_TOKEN")).andExpect(method(GET))
+                .andRespond(withSuccess(new ClassPathResource("/testdata/users_ids.json", getClass()), MediaType.APPLICATION_JSON));
+        List<String> ids = appdotnet.usersOperations().getFollowersIds("1");
+        assertEquals(2, ids.size());
+        assertEquals("2", ids.get(0));
+        assertEquals("3", ids.get(1));
+    }
+
+    @Test
+    public void getFollowing() {
+        mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL + "0/users/1/following?access_token=ACCESS_TOKEN")).andExpect(method(GET))
+                .andRespond(withSuccess(new ClassPathResource("/testdata/users.json", getClass()), MediaType.APPLICATION_JSON));
+        ADNUsers users = appdotnet.usersOperations().getFollowing("1");
+        assertEquals(2, users.getUsers().size());
+        assertBasicUser(users.getUsers().get(0), "1", "dalton", "Dalton Caldwell");
+        assertBasicUser(users.getUsers().get(1), "2", "berg", "Bryan Berg");
+    }
+
+    @Test
+    public void getFollowingIds() {
+        mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL + "0/users/1/following/ids?access_token=ACCESS_TOKEN")).andExpect(method(GET))
+                .andRespond(withSuccess(new ClassPathResource("/testdata/users_ids.json", getClass()), MediaType.APPLICATION_JSON));
+        List<String> ids = appdotnet.usersOperations().getFollowingIds("1");
+        assertEquals(2, ids.size());
+        assertEquals("2", ids.get(0));
+        assertEquals("3", ids.get(1));
+    }
+
+    @Test
+    public void follow() {
+        mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL + "0/users/1/follow?access_token=ACCESS_TOKEN")).andExpect(method(POST))
+                .andRespond(withSuccess(new ClassPathResource("/testdata/user.json", getClass()), MediaType.APPLICATION_JSON));
+        ADNUser user = appdotnet.usersOperations().follow("1");
+        assertBasicUser(user, "1", "mthurman", "Mark Thurman");
+    }
+
+    @Test
+    public void unfollow() {
+        mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL + "0/users/1/follow?access_token=ACCESS_TOKEN")).andExpect(method(DELETE))
+                .andRespond(withSuccess(new ClassPathResource("/testdata/user.json", getClass()), MediaType.APPLICATION_JSON));
+        appdotnet.usersOperations().unfollow("1");
     }
 }
