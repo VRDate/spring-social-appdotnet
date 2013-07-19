@@ -89,7 +89,6 @@ class UsersTemplate extends AbstractAppdotnetOperations implements UsersOperatio
 
     @Override
     public List<String> getFollowersIds(String id) {
-//        return (List<String>) restTemplate.getForObject(buildUri(id + "/following/ids"), new ADNResponse<List<String>>().getClass()).getData();
         return (List<String>) restTemplate.getForObject(buildUri(id + "/followers/ids"), ADNResponse.class).getData();
     }
 
@@ -117,6 +116,11 @@ class UsersTemplate extends AbstractAppdotnetOperations implements UsersOperatio
     @Override
     public ADNUsers getMutedUsers() {
         return getUsers(null, "me/muted");
+    }
+
+    @Override
+    public ADNUsers getMutedUsers(String id) {
+        return getUsers(null, id + "/muted");
     }
 
     // private

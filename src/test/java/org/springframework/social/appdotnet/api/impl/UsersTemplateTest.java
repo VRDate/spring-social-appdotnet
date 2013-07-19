@@ -190,4 +190,40 @@ public class UsersTemplateTest extends AbstractAppdotnetApiTest {
                 .andRespond(withSuccess(new ClassPathResource("/testdata/user.json", getClass()), MediaType.APPLICATION_JSON));
         appdotnet.usersOperations().unfollow("1");
     }
+
+    @Test
+    public void mute() {
+        mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL + "0/users/1/mute?access_token=ACCESS_TOKEN")).andExpect(method(POST))
+                .andRespond(withSuccess(new ClassPathResource("/testdata/user.json", getClass()), MediaType.APPLICATION_JSON));
+        ADNUser user = appdotnet.usersOperations().mute("1");
+        assertBasicUser(user, "1", "mthurman", "Mark Thurman");
+    }
+
+    @Test
+    public void unmute() {
+        mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL + "0/users/1/mute?access_token=ACCESS_TOKEN")).andExpect(method(DELETE))
+                .andRespond(withSuccess(new ClassPathResource("/testdata/user.json", getClass()), MediaType.APPLICATION_JSON));
+        appdotnet.usersOperations().unmute("1");
+    }
+
+    @Test
+    public void getMuted() {
+        mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL + "0/users/1/muted?access_token=ACCESS_TOKEN")).andExpect(method(GET))
+                .andRespond(withSuccess(new ClassPathResource("/testdata/users.json", getClass()), MediaType.APPLICATION_JSON));
+        ADNUsers users = appdotnet.usersOperations().getMutedUsers("1");
+        assertEquals(2, users.getUsers().size());
+        assertBasicUser(users.getUsers().get(0), "1", "dalton", "Dalton Caldwell");
+        assertBasicUser(users.getUsers().get(1), "2", "berg", "Bryan Berg");
+    }
+
+    @Test
+    public void getMutedByMe() {
+        mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL + "0/users/me/muted?access_token=ACCESS_TOKEN")).andExpect(method(GET))
+                .andRespond(withSuccess(new ClassPathResource("/testdata/users.json", getClass()), MediaType.APPLICATION_JSON));
+        ADNUsers users = appdotnet.usersOperations().getMutedUsers();
+        assertEquals(2, users.getUsers().size());
+        assertBasicUser(users.getUsers().get(0), "1", "dalton", "Dalton Caldwell");
+        assertBasicUser(users.getUsers().get(1), "2", "berg", "Bryan Berg");
+    }
+
 }

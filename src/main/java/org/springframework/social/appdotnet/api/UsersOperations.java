@@ -144,11 +144,19 @@ public interface UsersOperations {
     public void unmute(String id);
 
     /**
-     * Get all the users that the currently logged in user is following.
-     * Note: that this method can only be called for current logged in user.
+     * Get all the users that the currently logged in user muted.
      *
      * @return a List of {@link ADNUser} objects representing all the users that the logged in user muted
      */
     public ADNUsers getMutedUsers();
+
+    /**
+     * Get all the users that the currently logged in user muted.
+
+     * @param id App.net user id of the user you want a list of all the users he muted.
+     *
+     * @return a List of {@link ADNUser} objects representing all the users that the logged in user muted
+     */
+    public ADNUsers getMutedUsers(String id);
 
 }
