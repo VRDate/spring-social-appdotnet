@@ -261,4 +261,24 @@ public class UsersTemplateTest extends AbstractAppdotnetApiTest {
         assertBasicUser(users.getUsers().get(1), "2", "berg", "Bryan Berg");
     }
 
+    @Test
+    public void getReposters() {
+        mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL + "0/posts/1/reposters?access_token=ACCESS_TOKEN")).andExpect(method(GET))
+                .andRespond(withSuccess(new ClassPathResource("/testdata/users.json", getClass()), MediaType.APPLICATION_JSON));
+        ADNUsers users = appdotnet.usersOperations().getReposters("1");
+        assertEquals(2, users.getUsers().size());
+        assertBasicUser(users.getUsers().get(0), "1", "dalton", "Dalton Caldwell");
+        assertBasicUser(users.getUsers().get(1), "2", "berg", "Bryan Berg");
+    }
+
+    @Test
+    public void getStars() {
+        mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL + "0/posts/1/stars?access_token=ACCESS_TOKEN")).andExpect(method(GET))
+                .andRespond(withSuccess(new ClassPathResource("/testdata/users.json", getClass()), MediaType.APPLICATION_JSON));
+        ADNUsers users = appdotnet.usersOperations().getStarred("1");
+        assertEquals(2, users.getUsers().size());
+        assertBasicUser(users.getUsers().get(0), "1", "dalton", "Dalton Caldwell");
+        assertBasicUser(users.getUsers().get(1), "2", "berg", "Bryan Berg");
+    }
+
 }

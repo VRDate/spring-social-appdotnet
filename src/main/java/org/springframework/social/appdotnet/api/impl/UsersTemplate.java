@@ -143,7 +143,23 @@ class UsersTemplate extends AbstractAppdotnetOperations implements UsersOperatio
         return getUsers(null, id + "/blocked");
     }
 
+    @Override
+    public ADNUsers getReposters(String postId) {
+        return getUsersFromPostsResource(null, postId + "/reposters");
+    }
+
+    @Override
+    public ADNUsers getStarred(String postId) {
+        return getUsersFromPostsResource(null, postId + "/stars");
+    }
+
     // private
+
+    // This is duplicate code used only in starred / reposted because they are in a different domain
+    private ADNUsers getUsersFromPostsResource(Map<String, String> extraParams, String action) {
+        ADNResponse<List<ADNUser>> response = restTemplate.getForObject(buildUri("posts", action, extraParams), UsersResponse.class);
+        return new ADNUsers(response.getData(), createPaging(response.getMeta()));
+    }
 
     private ADNUsers getUsers(Map<String, String> extraParams, String action) {
         ADNResponse<List<ADNUser>> response = restTemplate.getForObject(buildUri(action, extraParams), UsersResponse.class);

@@ -190,4 +190,20 @@ public interface UsersOperations {
      */
     public ADNUsers getBlockedUsers(String id);
 
+    /**
+     * Get all the users that reposted a post
+     *
+     * @param postId The id of the post users reposted
+     * @return a List of {@link ADNUser} objects representing all the users that reposted
+     */
+    public ADNUsers getReposters(String postId);
+
+    /**
+     * Get all the users that starred a post
+     *
+     * @param postId The id of the post people starred
+     * @return a List of {@link ADNUser} objects representing all the users that starred the post
+     */
+    public ADNUsers getStarred(String postId);
+
 }
