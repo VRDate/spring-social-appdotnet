@@ -3,6 +3,7 @@ package org.springframework.social.appdotnet.api.impl;
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
+import org.springframework.social.appdotnet.api.GeneralUserParametersBuilder;
 import org.springframework.social.appdotnet.api.data.user.ADNUser;
 import org.springframework.social.appdotnet.api.data.user.ADNUsers;
 
@@ -17,10 +18,10 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 /**
  * @author Arik Galansky
  */
-public class UsersTemplateTest extends AbstractAppdotnetApiTest{
+public class UsersTemplateTest extends AbstractAppdotnetApiTest {
 
     @Test
-    public void getUser() {
+    public void getUserProfile() {
         mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL + "0/users/me?access_token=ACCESS_TOKEN")).andExpect(method(GET))
                 .andRespond(withSuccess(new ClassPathResource("/testdata/user.json", getClass()), MediaType.APPLICATION_JSON));
         ADNUser user = appdotnet.usersOperations().getUserProfile();
@@ -68,6 +69,44 @@ public class UsersTemplateTest extends AbstractAppdotnetApiTest{
     }
 
     @Test
+    public void getUserProfileWithParams() {
+        mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL +
+                "0/users/me?access_token=ACCESS_TOKEN&include_html=1&include_annotations=0&include_user_annotations=0"))
+                .andExpect(method(GET))
+                .andRespond(withSuccess(new ClassPathResource("/testdata/user.json", getClass()), MediaType.APPLICATION_JSON));
+        ADNUser user = appdotnet.usersOperations().getUserProfile(
+                GeneralUserParametersBuilder.create()
+                        .includeAnnotations(false)
+                        .includeHtml(true)
+                        .includeUserAnnotations(false)
+                        .build());
+        assertBasicUser(user, "1", "mthurman", "Mark Thurman");
+    }
+
+    @Test
+    public void getUserById() {
+        mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL + "0/users/1?access_token=ACCESS_TOKEN")).andExpect(method(GET))
+                .andRespond(withSuccess(new ClassPathResource("/testdata/user.json", getClass()), MediaType.APPLICATION_JSON));
+        ADNUser user = appdotnet.usersOperations().get("1");
+        assertBasicUser(user, "1", "mthurman", "Mark Thurman");
+    }
+
+    @Test
+    public void getUserWithParams() {
+        mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL +
+                "0/users/1?access_token=ACCESS_TOKEN&include_html=1&include_annotations=0&include_user_annotations=0"))
+                .andExpect(method(GET))
+                .andRespond(withSuccess(new ClassPathResource("/testdata/user.json", getClass()), MediaType.APPLICATION_JSON));
+        ADNUser user = appdotnet.usersOperations().get("1",
+                GeneralUserParametersBuilder.create()
+                        .includeAnnotations(false)
+                        .includeHtml(true)
+                        .includeUserAnnotations(false)
+                        .build());
+        assertBasicUser(user, "1", "mthurman", "Mark Thurman");
+    }
+
+    @Test
     public void getUsers() {
         mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL + "0/users/?access_token=ACCESS_TOKEN&ids=1%2C2")).andExpect(method(GET))
                 .andRespond(withSuccess(new ClassPathResource("/testdata/users.json", getClass()), MediaType.APPLICATION_JSON));
@@ -77,8 +116,20 @@ public class UsersTemplateTest extends AbstractAppdotnetApiTest{
         assertBasicUser(users.getUsers().get(1), "2", "berg", "Bryan Berg");
     }
 
-    private void assertEqualsAnnotation(ADNUser user, int expectedIndex, String expectedType, String expectedValueKey, String expectedValueValue) {
-        assertEquals(expectedType, user.getAnnotations().get(expectedIndex).getType());
-        assertEquals(expectedValueValue, user.getAnnotations().get(expectedIndex).getValue().get(expectedValueKey));
+    @Test
+    public void getUsersWithParams() {
+        mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL +
+                "0/users/?access_token=ACCESS_TOKEN&include_html=1&ids=1%2C2&include_annotations=0&include_user_annotations=0"))
+                .andExpect(method(GET))
+                .andRespond(withSuccess(new ClassPathResource("/testdata/users.json", getClass()), MediaType.APPLICATION_JSON));
+        ADNUsers users = appdotnet.usersOperations().get(Arrays.asList("1", "2"),
+                GeneralUserParametersBuilder.create()
+                        .includeAnnotations(false)
+                        .includeHtml(true)
+                        .includeUserAnnotations(false)
+                        .build());
+        assertEquals(2, users.getUsers().size());
+        assertBasicUser(users.getUsers().get(0), "1", "dalton", "Dalton Caldwell");
+        assertBasicUser(users.getUsers().get(1), "2", "berg", "Bryan Berg");
     }
 }

@@ -47,4 +47,9 @@ public class AbstractAppdotnetApiTest {
         assertEquals(expectedUrl, avatarImage.getUrl());
         assertEquals(expectedDefault, avatarImage.isDefault());
     }
+
+    protected void assertEqualsAnnotation(ADNUser user, int expectedIndex, String expectedType, String expectedValueKey, String expectedValueValue) {
+        assertEquals(expectedType, user.getAnnotations().get(expectedIndex).getType());
+        assertEquals(expectedValueValue, user.getAnnotations().get(expectedIndex).getValue().get(expectedValueKey));
+    }
 }
