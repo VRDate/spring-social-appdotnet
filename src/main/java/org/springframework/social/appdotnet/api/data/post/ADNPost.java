@@ -1,11 +1,11 @@
 package org.springframework.social.appdotnet.api.data.post;
 
+import org.springframework.social.appdotnet.api.data.ADNAnnotation;
 import org.springframework.social.appdotnet.api.data.entities.ADNEntities;
 import org.springframework.social.appdotnet.api.data.user.ADNUser;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Represents a post inside App.net

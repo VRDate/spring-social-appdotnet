@@ -3,11 +3,13 @@ package org.springframework.social.appdotnet.api.impl.json;
 import org.codehaus.jackson.annotate.JsonCreator;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.springframework.social.appdotnet.api.data.ADNAnnotation;
 import org.springframework.social.appdotnet.api.data.user.ADNImage;
 import org.springframework.social.appdotnet.api.data.user.ADNUserCounts;
 import org.springframework.social.appdotnet.api.data.user.ADNUserDescription;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,8 +34,14 @@ abstract class ADNUserMixin {
             @JsonProperty("counts") ADNUserCounts counts,
             @JsonProperty("app_data") Map<String, Object> appData,
             @JsonProperty("follows_you") boolean followsYou,
+            @JsonProperty("you_blocked") boolean youBlocked,
             @JsonProperty("you_follow") boolean youFollow,
-            @JsonProperty("you_muted") boolean youMuted
+            @JsonProperty("you_muted") boolean youMuted,
+            @JsonProperty("you_can_subscribe") boolean youCanSubscribe,
+            @JsonProperty("you_can_follow") boolean youCanFollow,
+            @JsonProperty("verified_domain") String verifiedDomain,
+            @JsonProperty("canonical_url") String canonicalUrl,
+            @JsonProperty("annotations") List<ADNAnnotation> annotations
     ) {
     }
 }

@@ -9,11 +9,13 @@ public class ADNImage {
     private final int height;
     private final int width;
     private final String url;
+    private final boolean isDefault;
 
-    public ADNImage(int height, int width, String url) {
+    public ADNImage(int height, int width, String url, boolean isDefault) {
         this.height = height;
         this.width = width;
         this.url = url;
+        this.isDefault = isDefault;
     }
 
     public String getUrl() {
@@ -26,5 +28,9 @@ public class ADNImage {
 
     public int getWidth() {
         return width;
+    }
+
+    public boolean isDefault() {
+        return isDefault;
     }
 }

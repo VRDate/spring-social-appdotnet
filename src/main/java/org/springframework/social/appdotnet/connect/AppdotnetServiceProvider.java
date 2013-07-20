@@ -12,8 +12,8 @@ import org.springframework.social.oauth2.OAuth2Template;
 public class AppdotnetServiceProvider extends AbstractOAuth2ServiceProvider<Appdotnet> {
     public AppdotnetServiceProvider(String clientId, String clientSecret) {
         super(new OAuth2Template(clientId, clientSecret,
-                "https://alpha.app.net/oauth/authenticate",
-                "https://alpha.app.net/oauth/access_token"));
+                "https://account.app.net/oauth/authenticate",
+                "https://account.app.net/oauth/authorize"));
     }
 
     @Override

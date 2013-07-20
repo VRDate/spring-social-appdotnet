@@ -8,11 +8,13 @@ package org.springframework.social.appdotnet.api.data.entities;
 public class ADNLink extends ADNEntity {
     private final String text;
     private final String url;
+    private final Integer amendedLength;
 
-    public ADNLink(String text, String url, int pos, int len) {
-        super(pos, len);
+    public ADNLink(String text, String url, int position, int length, Integer amendedLength) {
+        super(position, length);
         this.text = text;
         this.url = url;
+        this.amendedLength = amendedLength;
     }
 
     public String getText() {
@@ -21,5 +23,9 @@ public class ADNLink extends ADNEntity {
 
     public String getUrl() {
         return url;
+    }
+
+    public Integer getAmendedLength() {
+        return amendedLength;
     }
 }

@@ -9,8 +9,8 @@ public class ADNMention extends ADNEntity {
     private final String id;
     private final String name;
 
-    public ADNMention(String name, String id, int pos, int len) {
-        super(pos, len);
+    public ADNMention(String name, String id, int position, int length) {
+        super(position, length);
         this.id = id;
         this.name = name;
     }

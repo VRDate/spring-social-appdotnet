@@ -8,6 +8,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Map;
 
@@ -130,7 +131,7 @@ class PostsTemplate extends AbstractAppdotnetOperations implements PostsOperatio
     // private
 
     private ADNPosts getPosts(Map<String, String> extraParams, String action, String resource) {
-        String url;
+        URI url;
         if (resource == null) {
             url = buildUri(action, extraParams);
         } else {
