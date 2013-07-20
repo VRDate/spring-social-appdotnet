@@ -1,21 +1,24 @@
 package org.springframework.social.appdotnet.api.impl;
 
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.ObjectWriter;
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
 import org.springframework.social.appdotnet.api.GeneralUserParametersBuilder;
 import org.springframework.social.appdotnet.api.data.user.ADNUser;
+import org.springframework.social.appdotnet.api.data.user.ADNUserUpdate;
 import org.springframework.social.appdotnet.api.data.user.ADNUsers;
 
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static junit.framework.Assert.assertEquals;
-import static org.springframework.http.HttpMethod.DELETE;
-import static org.springframework.http.HttpMethod.GET;
-import static org.springframework.http.HttpMethod.POST;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
+import static org.springframework.http.HttpMethod.*;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.*;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
 /**
@@ -279,6 +282,49 @@ public class UsersTemplateTest extends AbstractAppdotnetApiTest {
         assertEquals(2, users.getUsers().size());
         assertBasicUser(users.getUsers().get(0), "1", "dalton", "Dalton Caldwell");
         assertBasicUser(users.getUsers().get(1), "2", "berg", "Bryan Berg");
+    }
+
+    @Test
+    public void update() throws IOException {
+        String name= "Arik";
+        String description = "My Description";
+        String timezone = "Asia/Jerusalem";
+        String locale = "he_IL";
+
+        mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL + "0/users/me?access_token=ACCESS_TOKEN")).andExpect(method(PUT))
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$.name").value(name))
+                .andExpect(jsonPath("$.description.text").value(description))
+                .andExpect(jsonPath("$.timezone").value(timezone))
+                .andExpect(jsonPath("$.locale").value(locale))
+                .andRespond(withSuccess(new ClassPathResource("/testdata/users.json", getClass()), MediaType.APPLICATION_JSON));
+        appdotnet.usersOperations().update(new ADNUserUpdate.Builder(name, description, timezone, locale).build());
+    }
+
+    @Test
+    public void updateWithAnnotations() throws IOException {
+        String name= "Arik";
+        String description = "My Description";
+        String timezone = "Asia/Jerusalem";
+        String locale = "he_IL";
+
+        Map<String, Object> annotation1 = new HashMap<String, Object>();
+        String annotationValueUrl1 = "http://mynewblog.com";
+        annotation1.put("url", annotationValueUrl1);
+        String annotationType1 = "net.app.core.directory.blog";
+
+        mockServer.expect(requestTo(AppdotnetTemplate.BASE_URL + "0/users/me?access_token=ACCESS_TOKEN")).andExpect(method(PUT))
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$.name").value(name))
+                .andExpect(jsonPath("$.description.text").value(description))
+                .andExpect(jsonPath("$.timezone").value(timezone))
+                .andExpect(jsonPath("$.locale").value(locale))
+                .andExpect(jsonPath("$.annotations[0].type").value(annotationType1))
+                .andExpect(jsonPath("$.annotations[0].value.url").value(annotationValueUrl1))
+                .andRespond(withSuccess(new ClassPathResource("/testdata/users.json", getClass()), MediaType.APPLICATION_JSON));
+        appdotnet.usersOperations().update(new ADNUserUpdate.Builder(name, description, timezone, locale)
+                .annotation(annotationType1, annotation1)
+                .build());
     }
 
 }

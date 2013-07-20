@@ -46,7 +46,11 @@ public class ADNUser {
         this.locale = locale;
         this.avatarImage = avatarImage;
         this.coverImage = coverImage;
-        this.type = ADNUserType.valueOf(type.toUpperCase());
+        if(type != null) {
+            this.type = ADNUserType.valueOf(type.toUpperCase());
+        } else {
+            this.type = null;
+        }
         this.createdAt = createdAt;
         this.counts = counts;
         this.appData = appData;

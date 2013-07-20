@@ -1,11 +1,16 @@
 package org.springframework.social.appdotnet.api.impl;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.social.appdotnet.api.UsersOperations;
 import org.springframework.social.appdotnet.api.data.ADNResponse;
 import org.springframework.social.appdotnet.api.data.user.ADNUser;
+import org.springframework.social.appdotnet.api.data.user.ADNUserUpdate;
 import org.springframework.social.appdotnet.api.data.user.ADNUsers;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,6 +75,14 @@ class UsersTemplate extends AbstractAppdotnetOperations implements UsersOperatio
             extraParams.put("count", count.toString());
         }
         return getUsers(extraParams, "search");
+    }
+
+    @Override
+    public void update(ADNUserUpdate user) throws IOException {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> entity = new HttpEntity<String>(user.toJson(),headers);
+        restTemplate.put(buildUri("me"), entity);
     }
 
     @Override

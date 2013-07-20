@@ -1,8 +1,10 @@
 package org.springframework.social.appdotnet.api;
 
 import org.springframework.social.appdotnet.api.data.user.ADNUser;
+import org.springframework.social.appdotnet.api.data.user.ADNUserUpdate;
 import org.springframework.social.appdotnet.api.data.user.ADNUsers;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -80,6 +82,13 @@ public interface UsersOperations {
      * @return a List of {@link ADNUser} objects representing requested users profile
      */
     public ADNUsers search(String q, Integer count, Map<String, String> extraParams);
+
+    /**
+     * Updated the user profile with all the values in the ADNUserUpdate object
+     *
+     * @param user a {@link ADNUserUpdate} object used to update the user profile
+     */
+    public void update(ADNUserUpdate user) throws IOException;
 
     /**
      * Start following the user who's ID was specified
